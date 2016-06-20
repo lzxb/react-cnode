@@ -541,11 +541,11 @@ img {
 }
 
 @font-face {font-family: "iconfont";
-  src: url(/iconfont.eot); /* IE9*/
-  src: url(/iconfont.eot#iefix) format('embedded-opentype'), 
-  url(/iconfont.woff) format('woff'), 
-  url(/iconfont.ttf) format('truetype'), 
-  url(/iconfont.svg#iconfont) format('svg'); /* iOS 4.1- */
+  src: url(/build/iconfont.eot); /* IE9*/
+  src: url(/build/iconfont.eot#iefix) format('embedded-opentype'), 
+  url(/build/iconfont.woff) format('woff'), 
+  url(/build/iconfont.ttf) format('truetype'), 
+  url(/build/iconfont.svg#iconfont) format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {

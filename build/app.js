@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
+/******/ 	__webpack_require__.p = "/build/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -28020,6 +28020,7 @@
 	                null,
 	                _react2.default.createElement(Nav, null),
 	                _react2.default.createElement(List, null),
+	                _react2.default.createElement('i', { className: 'iconfont icon-job' }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'data-load data-load-true' },
@@ -28218,6 +28219,12 @@
 	}(function () {
 	    'use strict';
 
+	    /**
+	     * (复制对象)
+	     * 
+	     * @returns (返回复制的对象)
+	     */
+
 	    function merged() {
 	        for (var len = arguments.length, arg = Array(len), key = 0; key < len; key++) {
 	            arg[key] = arguments[key];
@@ -28233,16 +28240,45 @@
 	                    } else {
 	                            obj[key] = merged(curObj); // obj 此属性不是对象，则和该对象原来的属性合并
 	                        }
-	                } else {
+	                } else if (isArray(curObj)) {
+	                        //此对象是数组
+	                        obj[key] = mergedArr(curObj);
+	                    } else {
 	                        obj[key] = curObj; //属性不是obj
 	                    }
 	            }
 	        }
 	        return obj;
 	    };
+
+	    /**
+	     * (复制数组)
+	     * 
+	     * @param arr (description)
+	     */
+	    function mergedArr(arr) {
+	        var arr2 = [];
+
+	        for (var i = 0; i < arr.length; i++) {
+	            var curObj = arr[i];
+	            if (isJson(curObj)) {
+	                arr2[i] = merged(curObj); // 复制对象
+	            } else if (isArray(curObj)) {
+	                    //复制数组
+	                    arr2[i] = mergedArr(curObj);
+	                } else {
+	                    arr2[i] = curObj; //属性不是obj
+	                }
+	        }
+	        return arr2;
+	    }
+
 	    function isJson(obj) {
 	        return (typeof obj === 'undefined' ? 'undefined' : typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == 'object' && Object.prototype.toString.call(obj).toLowerCase() === '[object object]' && !obj.length; //true 是 false不是
 	    };
+	    function isArray(arr) {
+	        return Object.prototype.toString.call(arr).toLowerCase() === '[object array]'; //true 是 false不是
+	    }
 	    return merged;
 	});
 

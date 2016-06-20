@@ -95,6 +95,7 @@ class Main extends Component {
             <div>
                 <Nav />
                 <List />
+                <i className="iconfont icon-job"></i>
                 <div className="data-load data-load-true">
                     <div className="msg">说明</div>
                 </div>

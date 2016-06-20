@@ -6,8 +6,8 @@ module.exports = {
         app: './src/app', //编译的入口文件
     },
     output: {
-        publicPath: '/', //服务器根路径
-        path: './build', //编译到当前目录
+        publicPath: '/build/', //编译好的文件，在服务器的路径
+        path: __dirname + '/build', //编译到当前目录
         filename: '[name].js' //编译后的文件名字
     },
     module: {
