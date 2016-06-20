@@ -28020,6 +28020,7 @@
 	                null,
 	                _react2.default.createElement(Nav, null),
 	                _react2.default.createElement(List, null),
+	                '嘀嗒嘀嗒嘀嗒',
 	                _react2.default.createElement('i', { className: 'iconfont icon-job' }),
 	                _react2.default.createElement(
 	                    'div',
@@ -28081,7 +28082,9 @@
 	     * @param state (状态)
 	     * @returns (返回需要更新的数据)
 	     */
-	    action.GET_LATEST_LIST_DATA_START = function (state) {
+	    action.GET_LATEST_LIST_DATA_START = function (href, state) {
+	        state.href[href].loadAnimation = true;
+	        state.href[href].loadMsg = '正在拼命加载中';
 	        return { _ID: _ID, state: state, type: GET_LATEST_LIST_DATA_START };
 	    };
 
@@ -28091,7 +28094,10 @@
 	     * @param state (状态)
 	     * @returns (返回需要更新的数据)
 	     */
-	    action.GET_LATEST_LIST_DATA_SUCCESS = function (state) {
+	    action.GET_LATEST_LIST_DATA_SUCCESS = function (href, state, data) {
+	        state.href[href].loadAnimation = false;
+	        state.href[href].loadMsg = '上拉加载更多';
+	        state.href[href].data = data;
 	        return { _ID: _ID, state: state, type: GET_LATEST_LIST_DATA_SUCCESS };
 	    };
 
@@ -28101,7 +28107,9 @@
 	     * @param state (状态)
 	     * @returns (返回需要更新的数据)
 	     */
-	    action.GET_LATEST_LIST_DATA_ERROR = function (state) {
+	    action.GET_LATEST_LIST_DATA_ERROR = function (href, state) {
+	        state.href[href].loadAnimation = false;
+	        state.href[href].loadMsg = '加载失败';
 	        return { _ID: _ID, state: state, type: GET_LATEST_LIST_DATA_ERROR };
 	    };
 
@@ -28111,7 +28119,9 @@
 	     * @param state (状态)
 	     * @returns (返回需要更新的数据)
 	     */
-	    action.SETSCROLL = function (state) {
+	    action.SETSCROLL = function (href, state) {
+	        state.href[href].scrollX = window.scrollX;
+	        state.href[href].scrollY = window.scrollY;
 	        return { _ID: _ID, type: SETSCROLL };
 	    };
 
@@ -28121,7 +28131,8 @@
 	     * @param state (状态)
 	     * @returns (返回需要更新的数据)
 	     */
-	    action.RESET_DEFAULT_STATE = function (state) {
+	    action.RESET_DEFAULT_STATE = function (href, state) {
+	        state.href[href] = state.defaults;
 	        return { _ID: _ID, type: RESET_DEFAULT_STATE };
 	    };
 
@@ -28170,6 +28181,48 @@
 	var _objMerged2 = _interopRequireDefault(_objMerged);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var List = function List(_ID) {
+
+	    var defaults = {
+	        _ID: _ID,
+	        defaults: {
+	            page: 1, //加载第几页数据
+	            nextBtn: true, //true开启分页插件，false关闭分页插件
+	            loadAnimation: true, //true显示加载动画，false 不显示加载动画
+	            loadMsg: '加载中', //加载提示
+	            data: [] },
+	        //列表的数据
+	        href: {}
+	    };
+
+	    return function () {
+	        var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	        var action = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+	        if (state._ID && state._ID !== action._ID) return state;
+
+	        switch (action.type) {
+	            case 'GET_LATEST_LIST_DATA_START':
+	                //开始获取最新列表数据
+	                return (0, _objMerged2.default)(action.state);
+	            case 'GET_LATEST_LIST_DATA_SUCCESS':
+	                //获取最新列表数据成功
+	                return (0, _objMerged2.default)(action.state);
+	            case 'GET_LATEST_LIST_DATA_ERROR':
+	                //获取最新列表数据失败
+	                return (0, _objMerged2.default)(action.state);
+	            case 'SETSCROLL':
+	                //记录组件卸载前的滚动条位置
+	                return (0, _objMerged2.default)(action.state); //涅槃对象
+	            case 'RESET_DEFAULT_STATE':
+	                //重置默认状态
+	                return (0, _objMerged2.default)(state); //涅槃对象
+	            default:
+	                return (0, _objMerged2.default)(state, defaults); //返回默认状态
+	        }
+	    };
+	};
 
 	/**
 	 * (首页列表)

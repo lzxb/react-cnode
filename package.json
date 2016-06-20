@@ -21,7 +21,7 @@
     "flex-css-layout": "^1.2.8",
     "get-next-page": "1.0.0",
     "normalize.css": "^4.1.1",
-    "obj-merged": "^1.0.1",
+    "obj-merged": "^1.0.5",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.5",
