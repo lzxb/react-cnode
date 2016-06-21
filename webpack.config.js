@@ -2,9 +2,9 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: [
-        './src/app', //编译的入口文件
-    ],
+    entry: {
+        app: './src/app', //编译的入口文件
+    },
     output: {
         publicPath: '/build/', //编译好的文件，在服务器的路径
         path: __dirname + '/build', //编译到当前目录

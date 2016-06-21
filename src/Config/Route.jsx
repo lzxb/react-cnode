@@ -20,7 +20,7 @@ class Roots extends Component {
 }
 
 const RouteConfig = (
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
         <Route path="/" component={Roots}>
             <IndexRoute component={IndexList} />
             <Route path="topic/:id" component={Topic} />
