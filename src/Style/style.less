@@ -1,3 +1,4 @@
+//out: null
 @style-bg: #eee;
 @style-main : #80bd01;
 @style-color: #2c3e50;
@@ -131,5 +132,42 @@ img {
     }
     100% {
         transform: rotate(360deg)
+    }
+}
+
+/*
+    公共头部
+*/
+
+.common-header {
+    height: 50px;
+    z-index: 999;
+    position: relative;
+    background: @style-bg;
+    animation: move-down 0.3s ease-out;
+    .icon {
+        width: 50px;
+        height: 50px;
+        a {
+            display: block;
+            color: #fff;
+        }
+    }
+    .iconfont {
+        font-size: 24px;
+    }
+    .title {
+        line-height: 50px;
+        text-align: center;
+        color: #fff;
+        font-size: 16px;
+    }
+}
+@keyframes move-down {
+    0% {
+        transform: translate(0, -10px);
+    }
+    100% {
+        transform: translate(0, 0);
     }
 }
