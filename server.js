@@ -7,10 +7,16 @@ var proxy = [{
     path: "/api/*",
     target: "https://cnodejs.org",
     host: "cnodejs.org"
-}]
+}];
 //启动服务
-var app = new WebpackDevServer(webpack(config), {
-    publicPath: './',
-    proxy:proxy
+var server = new WebpackDevServer(webpack(config), {
+    publicPath: __dirname + '/',
+    proxy: proxy
 });
-app.listen(3000);
+var app = server.app;
+
+app.get('*', function (req, res) {
+    res.sendFile(__dirname + '/index.html')
+});
+
+server.listen(3000);

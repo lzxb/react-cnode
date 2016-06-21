@@ -20,7 +20,17 @@ img {
 */
 
 .index-nav {
+    .height {
+        height: 38px;
+        background: @style-main;
+    }
     ul {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 9999;
+        height: 38px;
         background: @style-main;
     }
     li {
@@ -38,10 +48,12 @@ img {
         }
     }
     .on {
-        margin: 5px;
-        line-height: 28px;
-        border-radius: 8px;
-        background: darken(@style-main, 10%);
+        a {
+            margin: 5px 10px;
+            line-height: 28px;
+            border-radius: 8px;
+            background: darken(@style-main, 10%);
+        }
     }
     a {
         display: block;

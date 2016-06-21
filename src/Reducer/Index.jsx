@@ -1,36 +1,97 @@
-import merged from 'obj-merged';
-
-
+import {Tool, merged} from '../Tool';
 const List = (_ID) => {
-
-    var defaults = {
-        _ID: _ID,
-        defaults: {
-            page: 1, //加载第几页数据
-            nextBtn: true, //true开启分页插件，false关闭分页插件
-            loadAnimation: true, //true显示加载动画，false 不显示加载动画
-            loadMsg: '加载中', //加载提示
-            data: [], //列表的数据
+    const cb = {
+        /**
+         * (默认状态)
+         * 
+         */
+        DEFAULTS: () => {
+            return {
+                _ID: _ID,
+                page: 1, //加载第几页数据
+                nextBtn: true, //true开启分页插件，false关闭分页插件
+                loadAnimation: true, //true显示加载动画，false 不显示加载动画
+                loadMsg: '加载中', //加载提示
+                limit: 20, //每次加载的条数
+                mdrender: false, //当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
+                data: [], //列表的数据
+            }
         },
-        href: {}
+        /**
+         * (分页开始加载)
+         * 
+         * @param state (状态)
+         * @param target (更新目标)
+         * @returns (更新后的内容)
+         */
+        GET_LATEST_LIST_DATA_START: (state, target) => {
+            return merged(state, {
+                loadAnimation: true,
+                loadMsg: '正在拼命加载中'
+            });
+        },
+        /**
+         * (分页加载成功)
+         * 
+         * @param state (状态)
+         * @param target (更新目标)
+         * @returns (更新后的内容)
+         */
+        GET_LATEST_LIST_DATA_SUCCESS: (state, target) => {
+            let {data} = target;
+            if (!data.length && data.length < before.limit) {
+                state.nextBtn = false;
+                state.loadMsg = '没有了';
+            } else {
+                state.nextBtn = true;
+                state.loadMsg = '上拉加载更多';
+            }
+            Array.prototype.push.apply(state.data, data);
+            state.loadAnimation = false;
+            state.page = ++state.page;
+
+            return merged(state, {
+                loadAnimation: true,
+                loadMsg: '正在拼命加载中'
+            });
+        },
+        /**
+         * (分页加载失败)
+         * 
+         * @param state (状态)
+         * @param target (更新目标)
+         * @returns (更新后的内容)
+         */
+        GET_LATEST_LIST_DATA_ERROR: (state, target) => {
+            return merged(state, {
+                loadAnimation: false,
+                loadMsg: '加载失败'
+            });
+        },
+        /**
+         * (组件卸载前，记录滚动条位置)
+         * 
+         * @param state (状态)
+         * @param target (更新目标)
+         */
+        SETSCROLL: (state, target) => {
+            state.scrollX = window.scrollX;
+            state.scrollY = window.scrollY;
+            return merged(state);
+        },
+        RESET_DEFAULT_STATE: (state, target) => {
+            return cb.DEFAULTS();
+        }
     };
 
     return (state = {}, action = {}) => {
-        if (state._ID && state._ID !== action._ID) return state;
 
-        switch (action.type) {
-            case 'GET_LATEST_LIST_DATA_START': //开始获取最新列表数据
-                return merged(action.state);
-            case 'GET_LATEST_LIST_DATA_SUCCESS': //获取最新列表数据成功
-                return merged(action.state);
-            case 'GET_LATEST_LIST_DATA_ERROR': //获取最新列表数据失败
-                return merged(action.state);
-            case 'SETSCROLL': //记录组件卸载前的滚动条位置
-                return merged(action.state); //涅槃对象
-            case 'RESET_DEFAULT_STATE': //重置默认状态
-                return merged(state); //涅槃对象
-            default:
-                return merged(state, defaults); //返回默认状态
+        if (state._ID && state._ID !== action._ID) {
+            return state;
+        } else if (cb[action.type]) {
+            return cb[action.type](state, action.target);
+        } else {
+            return cb.DEFAULTS();
         }
     }
 }
@@ -38,24 +99,7 @@ const List = (_ID) => {
 /**
  * (首页列表)
  * 
- * @param [state] (状态)
- * @param [action] (行为)
- * @returns (返回更新的状态)
  */
-const IndexList = (state = {}, action = {}) => {
-
-    if (state._ID && state._ID !== action._ID) return state;
-
-    switch (action.type) {
-        case 'GET_LATEST_LIST_DATA_START': //开始获取最新列表数据
-        case 'GET_LATEST_LIST_DATA_SUCCESS': //获取最新列表数据成功
-        case 'GET_LATEST_LIST_DATA_ERROR': //获取最新列表数据失败
-        case 'SETSCROLL': //记录组件卸载前的滚动条位置
-        case 'RESET_DEFAULT_STATE': //重置默认状态
-        default:
-            return merged(state, { _ID: 'IndexList' }); //返回默认状态
-    }
-
-}
+const IndexList = List('IndexList');
 
 export default { IndexList };
