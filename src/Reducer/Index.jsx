@@ -1,4 +1,10 @@
 import {Tool, merged} from '../Tool';
+/**
+ * 获取列表
+ * 
+ * @param {any} _ID
+ * @returns
+ */
 const List = (_ID) => {
     const cb = {
         /**
@@ -12,7 +18,9 @@ const List = (_ID) => {
                 nextBtn: true, //true开启分页插件，false关闭分页插件
                 loadAnimation: true, //true显示加载动画，false 不显示加载动画
                 loadMsg: '加载中', //加载提示
-                limit: 20, //每次加载的条数
+                limit: 10, //每次加载的条数
+                scrollX: 0, //滚动条X
+                scrollY: 0, //滚动条Y
                 mdrender: false, //当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
                 data: [], //列表的数据
             }
@@ -97,9 +105,39 @@ const List = (_ID) => {
 }
 
 /**
- * (首页列表)
+ * 获取详情
  * 
+ * @param {any} _ID
+ * @returns
  */
-const IndexList = List('IndexList');
+const View = (_ID) => {
 
-export default { IndexList };
+    const cb = {
+        DEFAULTS: function () {
+            return {
+                loadAnimation: true, //true显示加载动画，false 不显示加载动画
+                loadMsg: '加载中', //加载提示
+                data: null, //页面的数据
+                scrollX: 0, //滚动条X
+                scrollY: 0, //滚动条Y
+                mdrender: false, //当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
+            };
+        }
+    }
+    return (state = {}, action = {}) => {
+
+        if (state._ID && state._ID !== action._ID) {
+            return state;
+        } else if (cb[action.type]) {
+            return cb[action.type](state, action.target);
+        } else {
+            return cb.DEFAULTS();
+        }
+    }
+}
+
+
+export default {
+    IndexList: List('IndexList'),
+    Topic: View('Topic')
+};
