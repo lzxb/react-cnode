@@ -87,6 +87,13 @@ const List = (_ID) => {
             state.scrollY = window.scrollY;
             return merged(state);
         },
+        /**
+         * 重置默认状态，通过Link组件访问当前页面时，经常需要重置组件为默认状态
+         * 
+         * @param {any} state
+         * @param {any} target
+         * @returns
+         */
         RESET_DEFAULT_STATE: (state, target) => {
             return cb.DEFAULTS();
         }
@@ -113,15 +120,66 @@ const List = (_ID) => {
 const View = (_ID) => {
 
     const cb = {
-        DEFAULTS: function () {
-            return {
+        DEFAULTS: () => {
+            var defaults = {
+                id: '', //当前页面的id
                 loadAnimation: true, //true显示加载动画，false 不显示加载动画
                 loadMsg: '加载中', //加载提示
                 data: null, //页面的数据
                 scrollX: 0, //滚动条X
-                scrollY: 0, //滚动条Y
-                mdrender: false, //当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
+                scrollY: 0, //滚动条Y 
+                mdrender: true //当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
             };
+            defaults.defaults = merged(defaults);
+            return defaults;
+        },
+        /**
+         * 获取详情成功
+         * 
+         * @param {any} state
+         * @param {any} target
+         */
+        GET_LATEST_VIEW_DATA_SUCCESS: (state, target) => {
+            return merged(state, {
+                id: target.data.id,
+                loadMsg: '详情',
+                loadAnimation: false,
+                data: target.data
+            });
+        },
+
+        /**
+         * 获取详情失败
+         * 
+         * @param {any} state
+         * @param {any} target
+         */
+        GET_LATEST_VIEW_DATA_ERROR: (state, target) => {
+            return merged(state, {
+                loadMsg: '加载失败',
+                loadAnimation: false
+            });
+        },
+        /**
+         * (组件卸载前，记录滚动条位置)
+         * 
+         * @param state (状态)
+         * @param target (更新目标)
+         */
+        SETSCROLL: (state, target) => {
+            state.scrollX = window.scrollX;
+            state.scrollY = window.scrollY;
+            return merged(state);
+        },
+        /**
+         * 重置默认状态，通过Link组件访问当前页面时，经常需要重置组件为默认状态
+         * 
+         * @param {any} state
+         * @param {any} target
+         * @returns
+         */
+        RESET_DEFAULT_STATE: (state, target) => {
+            return cb.DEFAULTS();
         }
     }
     return (state = {}, action = {}) => {

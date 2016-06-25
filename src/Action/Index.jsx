@@ -23,7 +23,7 @@ export default (_ID) => {
      * @param res (服务器返回的数据)
      * @returns (返回需要更新的数据)
      */
-    action.GET_LATEST_LIST_DATA_SUCCESS = (target) => {
+    action.GET_LATEST_LIST_DATA_SUCCESS = (target = {}) => {
         return { _ID, target, type: GET_LATEST_LIST_DATA_SUCCESS };
     }
 
@@ -32,7 +32,7 @@ export default (_ID) => {
      * 
      * @returns (返回需要更新的数据)
      */
-    action.GET_LATEST_LIST_DATA_ERROR = (target) => {
+    action.GET_LATEST_LIST_DATA_ERROR = (target = {}) => {
         return { _ID, target, type: GET_LATEST_LIST_DATA_ERROR };
     }
 
@@ -41,7 +41,7 @@ export default (_ID) => {
      * 
      * @returns (返回需要更新的数据)
      */
-    action.SETSCROLL = (target) => {
+    action.SETSCROLL = (target = {}) => {
         return { _ID, target, type: SETSCROLL };
     }
 
@@ -50,7 +50,7 @@ export default (_ID) => {
      * 
      * @returns (返回需要更新的数据)
      */
-    action.RESET_DEFAULT_STATE = (target) => {
+    action.RESET_DEFAULT_STATE = (target = {}) => {
         return { _ID, target, type: RESET_DEFAULT_STATE };
     }
 
@@ -59,7 +59,7 @@ export default (_ID) => {
      * 
      * @returns (返回需要更新的数据)
      */
-    action.GET_LATEST_VIEW_DATA_SUCCESS = (target) => {
+    action.GET_LATEST_VIEW_DATA_SUCCESS = (target = {}) => {
         return { _ID, target, type: GET_LATEST_VIEW_DATA_SUCCESS };
     }
 
@@ -68,7 +68,7 @@ export default (_ID) => {
      * 
      * @returns (返回需要更新的数据)
      */
-    action.GET_LATEST_VIEW_DATA_ERROR = (target) => {
+    action.GET_LATEST_VIEW_DATA_ERROR = (target = {}) => {
         return { _ID, target, type: GET_LATEST_VIEW_DATA_ERROR };
     }
 
