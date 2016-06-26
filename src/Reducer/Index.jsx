@@ -85,7 +85,7 @@ const List = (_ID) => {
         SETSCROLL: (state, target) => {
             state.scrollX = window.scrollX;
             state.scrollY = window.scrollY;
-            return merged(state);
+            return state;
         },
         /**
          * 重置默认状态，通过Link组件访问当前页面时，经常需要重置组件为默认状态
