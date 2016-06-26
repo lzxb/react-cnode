@@ -112,7 +112,8 @@ class ReList extends Component {
             <ul className="re-list">
                 {
                     this.props.list.map((item, index) => {
-                        var {id, content, author, ups} = item;
+                        var {id, content, author, ups, create_at} = item;
+                        var at = new Date(create_at);
                         var createMarkup = () => {
                             return {
                                 __html: content
@@ -126,6 +127,7 @@ class ReList extends Component {
                                 <div className="main" data-flex-box="1">
                                     <div data-flex="main:justify">
                                         <div className="name">{author.loginname}</div>
+                                        <time data-flex-box="1">{Tool.formatDate(create_at)}</time>
                                         <div className="lou">#{++index}</div>
                                     </div>
                                     <div className="content" dangerouslySetInnerHTML={createMarkup() }></div>
