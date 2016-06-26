@@ -53,7 +53,7 @@ class List extends Component {
             <ul className="index-list">
                 {
                     this.props.list.map((item, index) => {
-                        let {id, title, author, visit_count, reply_count} = item;
+                        let {id, title, author, visit_count, reply_count, create_at, last_reply_at} = item;
                         return (
                             <li key={index}>
                                 <Link to={"/topic/" + id}>
@@ -70,8 +70,8 @@ class List extends Component {
                                                 <span className="count">{reply_count}/{visit_count}</span>
                                             </p>
                                             <p data-flex="cross:center box:last">
-                                                <time className="create">1年前</time>
-                                                <time className="re">1分钟前</time>
+                                                <time className="create">{Tool.formatDate(create_at)}</time>
+                                                <time className="re">{Tool.formatDate(last_reply_at)}</time>
                                             </p>
                                         </div>
                                     </div>

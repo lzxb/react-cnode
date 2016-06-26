@@ -123,8 +123,14 @@ Tool.get = function (pathname, data, success, error) {
     return Tool.ajax(setting);
 };
 
-
-
-
+/**
+ * 格式化时间
+ * 
+ * @param {any} t
+ * @returns
+ */
+Tool.formatDate = function (time) {
+    return time;
+}
 
 export {Tool, merged, GetNextPage}

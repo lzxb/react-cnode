@@ -79,7 +79,7 @@ class Article extends Component {
         super(props);
     }
     render() {
-        var {title, create_at, visit_count, reply_count, content, replies} = this.props;
+        var {title, create_at, visit_count, reply_count, content, replies, author} = this.props;
         var createMarkup = () => {
             return {
                 __html: content
@@ -87,14 +87,19 @@ class Article extends Component {
         }
         return (
             <div className="topic">
-                <h2 className="tit2">{title}</h2>
-                <div className="top-value" data-flex>
-                    <div flex-box="0">阅读：{visit_count}</div>
-                    <div flex-box="0">回复：{reply_count}</div>
-                    <div flex-box="1">发表时间：{create_at}</div>
+                <div className="user" data-flex>
+                    <div className="headimg" data-flex-box="0" style={{backgroundImage: 'url(' + author.avatar_url + ')'}}></div>
+                    <div className="data" data-flex="dir:top" data-fle-boxx="0">
+                        <div className="name">{author.loginname}</div>
+                        <div className="qt" data-flex>
+                            <div>阅读：{visit_count}</div>
+                            <div>回复：{reply_count}</div>
+                        </div>
+                    </div>
                 </div>
+                <h2 className="tit2">{title}</h2>
                 <div className="content" dangerouslySetInnerHTML={createMarkup() } />
-                <h3 className="tit3">回复</h3>
+                <h3 className="tit3">共<em>{replies.length}</em>条回复</h3>
                 <ReList list={replies} />
             </div>
         );
@@ -104,18 +109,36 @@ class Article extends Component {
 class ReList extends Component {
     render() {
         return (
-            <ul>
+            <ul className="re-list">
                 {
                     this.props.list.map((item, index) => {
-                        var {id, content} = item;
+                        var {id, content, author, ups} = item;
                         var createMarkup = () => {
                             return {
                                 __html: content
                             };
                         }
                         return (
-                            <li key={id}>
-                                <div dangerouslySetInnerHTML={createMarkup() } />
+                            <li key={id} data-flex>
+                                <div className="headimg" data-flex-box="0">
+                                    <div className="pictrue" style={{backgroundImage: 'url(' + author.avatar_url + ')'}}></div>
+                                </div>
+                                <div className="main" data-flex-box="1">
+                                    <div data-flex="main:justify">
+                                        <div className="name">{author.loginname}</div>
+                                        <div className="lou">#{++index}</div>
+                                    </div>
+                                    <div className="content" dangerouslySetInnerHTML={createMarkup() }></div>
+                                    <div className="bottom" data-flex="main:right">
+                                        <div className="font">
+                                            <i className="iconfont icon-dianzan"></i>
+                                            <em>{ups.length ? ups.length : ''}</em>
+                                        </div>
+                                        <div className="font">
+                                            <i className="iconfont icon-huifu"></i>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                         );
                     })
