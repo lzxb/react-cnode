@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import {Tool, merged, GetNextPage} from '../Tool';
-import {DataLoad, DataNull, Header, TipMsgSignin} from './common/index';
+import {DataLoad, DataNull, Header, TipMsgSignin, UserHeadImg} from './common/index';
 
 /**
  * 模块入口
@@ -89,7 +89,7 @@ class Article extends Component {
             <div className="topic">
                 <div className="user" data-flex>
                     <div className="headimg" data-flex-box="0">
-                        <div className="pictrue" style={{ backgroundImage: 'url(' + author.avatar_url + ')' }}></div>
+                        <UserHeadImg url={author.avatar_url} />
                     </div>
                     <div className="data" data-flex="dir:top" data-flex-box="1">
                         <div data-flex="main:justify">
@@ -136,7 +136,7 @@ class ReList extends Component {
                         return (
                             <li key={id} data-flex>
                                 <div className="headimg" data-flex-box="0">
-                                    <div className="pictrue" style={{ backgroundImage: 'url(' + author.avatar_url + ')' }}></div>
+                                    <UserHeadImg url={author.avatar_url} />
                                 </div>
                                 <div className="main" data-flex-box="1">
                                     <div data-flex="main:justify">

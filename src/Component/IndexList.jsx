@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import {Tool, merged, GetNextPage} from '../Tool';
-import {DataLoad, Footer} from './common/index';
+import {DataLoad, Footer, UserHeadImg} from './common/index';
 
 
 /**
@@ -60,9 +60,7 @@ class List extends Component {
                                     <h3 className="tit">{title}</h3>
                                     <div className="bottom" data-flex="box:first">
                                         <div className="author" data-flex="cross:center">
-                                            <div className="pictrue">
-                                                <img src={author.avatar_url} />
-                                            </div>
+                                            <UserHeadImg url={author.avatar_url} />
                                         </div>
                                         <div className="con" data-flex="dir:top main:center">
                                             <p data-flex="cross:center box:last">
@@ -70,8 +68,8 @@ class List extends Component {
                                                 <span className="count">{reply_count}/{visit_count}</span>
                                             </p>
                                             <p data-flex="cross:center box:last">
-                                                <time className="create">{Tool.formatDate(create_at)}</time>
-                                                <time className="re">{Tool.formatDate(last_reply_at)}</time>
+                                                <time className="create">{Tool.formatDate(create_at) }</time>
+                                                <time className="re">{Tool.formatDate(last_reply_at) }</time>
                                             </p>
                                         </div>
                                     </div>

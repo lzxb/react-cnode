@@ -89,16 +89,6 @@ img {
     }
     .author {
         padding-right: 5px;
-        .pictrue {
-            overflow: hidden;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            img {
-                width: inherit;
-                height: inherit;
-            }
-        }
     }
     .con {
         line-height: 20px;
@@ -196,15 +186,6 @@ img {
         font-size: 12px;
         border-bottom: 1px solid #ddd;
         .headimg {
-            .pictrue {
-                width: 38px;
-                height: 38px;
-                margin-right: 10px;
-                border-radius: 50%;
-                border: 1px solid #ddd;
-                background-size: cover;
-                background-color: #eee;
-            }
         }
         .name {
             font-size: 14px;
@@ -262,17 +243,6 @@ img {
     li {
         padding: 10px 10px 0 10px;
         border-bottom: 1px solid #ddd;
-        .headimg {
-            .pictrue {
-                width: 38px;
-                height: 38px;
-                margin-right: 10px;
-                border-radius: 50%;
-                border: 1px solid #ddd;
-                background-size: cover;
-                background-color: #eee;
-            }
-        }
         .name {
             font-size: 14px;
             color: @style-main;
@@ -375,7 +345,7 @@ img {
         }
         .on {
             background: lighten(@style-main, 2%);
-            ad{
+            ad {
                 opacity: 1;
                 color: lighten(@style-main, 30%);
             }
@@ -384,4 +354,19 @@ img {
             display: block;
         }
     }
+}
+
+
+/*
+    用户头像
+*/
+
+.user-headimg {
+    width: 38px;
+    height: 38px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background-size: cover;
+    background-color: #eee;
 }

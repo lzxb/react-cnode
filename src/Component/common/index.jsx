@@ -88,7 +88,7 @@ Header.defaultProps = {
  * @extends {Component}
  */
 export class DataNull extends Component {
-    render () {
+    render() {
         return (
             <div>暂无记录</div>
         );
@@ -103,7 +103,7 @@ export class DataNull extends Component {
  * @extends {Component}
  */
 export class Footer extends Component {
-    render () {
+    render() {
         var arr = [];
         arr[this.props.index] = 'on';
         return (
@@ -153,5 +153,11 @@ export class TipMsgSignin extends Component {
                 你还未登录，请先<Link to="/signin">登录</Link>
             </div>
         );
+    }
+}
+
+export class UserHeadImg extends Component {
+    render() {
+       return (<div className="user-headimg"  style={{ backgroundImage: 'url(' + this.props.url + ')' }}></div>)
     }
 }
