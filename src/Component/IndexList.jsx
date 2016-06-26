@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import {Tool, merged, GetNextPage} from '../Tool';
-import {DataLoad} from './common/index';
+import {DataLoad, Footer} from './common/index';
 
 
 /**
@@ -139,6 +139,7 @@ class Main extends Component {
                     data.length > 0 ? <List list={data} /> : null
                 }
                 <div ref="dataload"><DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} /></div>
+                <Footer index="0" />
             </div>
         );
     }

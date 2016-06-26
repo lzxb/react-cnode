@@ -2,12 +2,15 @@
 @style-bg: #eee;
 @style-main : #80bd01;
 @style-color: #2c3e50;
-body, ul, li, a, p, h2, h3 {
+body, ul, li, a, p, h2, h3, textarea, button {
     padding: 0;
     margin: 0;
     list-style: none;
     text-decoration: none;
     color: @style-color;
+    &:focus {
+        outline: none;
+    }
 }
 
 img {
@@ -193,17 +196,30 @@ img {
         font-size: 12px;
         border-bottom: 1px solid #ddd;
         .headimg {
-            width: 38px;
-            height: 38px;
-            margin-right: 10px;
-            border-radius: 50%;
-            border: 1px solid #ddd;
-            background-size: cover;
-            background-color: #eee;
+            .pictrue {
+                width: 38px;
+                height: 38px;
+                margin-right: 10px;
+                border-radius: 50%;
+                border: 1px solid #ddd;
+                background-size: cover;
+                background-color: #eee;
+            }
         }
         .name {
             font-size: 14px;
             color: @style-main;
+        }
+        .lou {
+            line-height: 14px;
+            font-size: 14px;
+            color: #aaa;
+        }
+        time {
+            padding-left: 5px;
+            line-height: 14px;
+            font-size: 14px;
+            color: #666;
         }
         .qt {
             div {
@@ -229,7 +245,7 @@ img {
         background: #eee;
         font-weight: normal;
         font-size: 14px;
-        em{
+        em {
             font-style: normal;
             color: @style-main;
         }
@@ -242,9 +258,10 @@ img {
 */
 
 .re-list {
+    margin-bottom: 20px;
     li {
         padding: 10px 10px 0 10px;
-        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
         .headimg {
             .pictrue {
                 width: 38px;
@@ -275,11 +292,96 @@ img {
             .font {
                 position: relative;
                 padding: 10px;
-                em{
+                em {
                     font-size: 13px;
                     font-style: normal;
                 }
             }
+        }
+    }
+}
+
+
+/*
+    回复框
+*/
+
+.reply-box {
+    padding: 10px;
+    .text {
+        margin-bottom: 10px;
+        textarea {
+            box-sizing: border-box;
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            line-height: 24px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 13px;
+            resize: none;
+        }
+    }
+    .btn {
+        padding: 5px 30px;
+        line-height: 24px;
+        border-radius: 5px;
+        border: 1px solid darken(@style-main, 5%);
+        font-size: 14px;
+        color: #fff;
+        background: @style-main;
+    }
+}
+
+
+/*
+    提示用户登录
+*/
+
+.tip-msg-signin {
+    padding: 30px 30px 50px 30px;
+    text-align: center;
+    a {
+        color: @style-main;
+    }
+}
+
+
+/*
+    底部菜单栏
+*/
+
+.common-footer {
+    .zhanwei {
+        height: 50px;
+    }
+    .menu {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 50px;
+        z-index: 999;
+        background: @style-main;
+        a {
+            padding: 5px 0;
+            font-size: 14px;
+            display: block;
+            line-height: 20px;
+            text-align: center;
+            color: #fff;
+            opacity: 0.8;
+            text-align: center;
+        }
+        .on {
+            background: lighten(@style-main, 2%);
+            ad{
+                opacity: 1;
+                color: lighten(@style-main, 30%);
+            }
+        }
+        .iconfont {
+            display: block;
         }
     }
 }
