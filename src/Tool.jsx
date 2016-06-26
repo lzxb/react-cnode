@@ -131,10 +131,11 @@ Tool.get = function (pathname, data, success, error) {
  */
 Tool.formatDate = function (str) {
     var date = new Date(str);
-    var time = new Date().getTime() - date.getTime(); //现在的时间，减去过去的时间 = 相差的时间（单位 = 毫秒）
-
-    if (time / 1000 < 60) {
-        return parseInt((time /1000)) + '秒前';
+    var time = new Date().getTime() - date.getTime(); //现在的时间-传入的时间 = 相差的时间（单位 = 毫秒）
+    if (time < 0) {
+        return '';
+    } else if (time / 1000 < 60) {
+        return parseInt((time / 1000)) + '秒前';
     } else if ((time / 60000) < 60) {
         return parseInt((time / 60000)) + '分钟前';
     } else if ((time / 3600000) < 24) {
@@ -146,6 +147,34 @@ Tool.formatDate = function (str) {
     } else {
         return parseInt(time / 31536000000) + '年前';
     }
+}
+
+/**
+ * 本地数据存储或读取
+ * 
+ * @param {any} key
+ * @param {any} value
+ * @returns
+ */
+Tool.localItem = function (key, value) {
+    if (arguments.length == 1) {
+        return localStorage.getItem(key);
+    } else {
+        return localStorage.setItem(key, value);
+    }
+}
+
+/**
+ * 删除本地数据
+ * 
+ * @param {any} key
+ * @returns
+ */
+Tool.removeLocalItem = function (key) {
+    if(key) {
+        return localStorage.removeItem(key);
+    }
+    return localStorage.removeItem();
 }
 
 export {Tool, merged, GetNextPage}

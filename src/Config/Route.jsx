@@ -6,6 +6,7 @@ import Topic from '../Component/Topic'; //主题详情
 import TopicCreate from '../Component/TopicCreate'; //发布主题
 import MyMessages from '../Component/MyMessages'; //我的消息
 import UserIndex from '../Component/UserIndex'; //我的个人中心
+import Signin from '../Component/Signin'; //我的个人中心
 
 /**
  * (路由根目录组件，显示当前符合条件的组件)
@@ -29,6 +30,7 @@ const RouteConfig = (
             <Route path="topic/:id" component={Topic} />
             <Route path="my/messages" component={MyMessages} />
             <Route path="user/index" component={UserIndex} />
+            <Route path="signin" component={Signin} />
         </Route>
     </Router>
 );

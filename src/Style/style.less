@@ -2,12 +2,13 @@
 @style-bg: #eee;
 @style-main : #80bd01;
 @style-color: #2c3e50;
-body, ul, li, a, p, h2, h3, textarea, button {
+body, ul, li, a, p, h2, h3, textarea, button, input {
     padding: 0;
     margin: 0;
     list-style: none;
     text-decoration: none;
     color: @style-color;
+    border: none;
     &:focus {
         outline: none;
     }
@@ -185,8 +186,7 @@ img {
         line-height: 20px;
         font-size: 12px;
         border-bottom: 1px solid #ddd;
-        .headimg {
-        }
+        .headimg {}
         .name {
             font-size: 14px;
             color: @style-main;
@@ -369,4 +369,39 @@ img {
     border: 1px solid #ddd;
     background-size: cover;
     background-color: #eee;
+}
+
+
+/*
+    登录
+*/
+
+.signin {
+    height: 480px;
+    .center {
+        width: 280px;
+    }
+    .text {
+        margin-bottom: 30px;
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 5px 10px;
+            line-height: 28px;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            font-size: 13px;
+        }
+    }
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 5px 10px;
+        line-height: 28px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 13px;
+        color: #fff;
+        background: @style-main;
+    }
 }

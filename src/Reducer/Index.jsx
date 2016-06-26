@@ -194,8 +194,23 @@ const View = (_ID) => {
     }
 }
 
+const User = (state = JSON.parse(Tool.localItem('User')), action) => {
+
+    switch (action.type) {
+        case 'SIGNIN_SUCCESS': //登录成功
+            Tool.localItem('User', JSON.stringify(action.target));
+            return action.target;
+        case 'SIGNOUT': //退出
+            Tool.removeLocalItem('User');
+            return null;
+        default:
+            return state;
+    }
+
+}
 
 export default {
     IndexList: List('IndexList'),
-    Topic: View('Topic')
+    Topic: View('Topic'),
+    User
 };
