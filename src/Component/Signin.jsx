@@ -60,4 +60,4 @@ Main.contextTypes = {
 }
 
 
-export default connect((state) => { return { state: state.User }; }, action('User'))(Main); //连接redux
+export default connect((state) => { return { User: state.User }; }, action('User'))(Main); //连接redux

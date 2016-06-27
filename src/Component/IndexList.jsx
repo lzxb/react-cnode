@@ -157,7 +157,7 @@ class Main extends Component {
     }
     componentWillUnmount() {
         this.unmount(this.props);
-        this.props.SETSCROLL(); //记录滚动条位置åß
+        this.props.SETSCROLL(); //记录滚动条位置
     }
 }
 

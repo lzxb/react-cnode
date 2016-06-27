@@ -5,7 +5,7 @@ import IndexList from '../Component/IndexList'; //首页组件
 import Topic from '../Component/Topic'; //主题详情
 import TopicCreate from '../Component/TopicCreate'; //发布主题
 import MyMessages from '../Component/MyMessages'; //我的消息
-import UserIndex from '../Component/UserIndex'; //我的个人中心
+import UserView from '../Component/UserView'; //我的个人中心
 import Signin from '../Component/Signin'; //我的个人中心
 
 /**
@@ -29,7 +29,7 @@ const RouteConfig = (
             <Route path="topic/create" component={TopicCreate} />
             <Route path="topic/:id" component={Topic} />
             <Route path="my/messages" component={MyMessages} />
-            <Route path="user/index" component={UserIndex} />
+            <Route path="user/:loginname" component={UserView} />
             <Route path="signin" component={Signin} />
         </Route>
     </Router>

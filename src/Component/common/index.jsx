@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import { connect } from 'react-redux';
+import action from '../../Action/Index';
 import {Tool, merged, GetNextPage} from '../../Tool';
 
 
@@ -75,9 +77,6 @@ export class Header extends Component {
 Header.contextTypes = {
     router: React.PropTypes.object.isRequired
 }
-Header.defaultProps = {
-
-};
 
 
 /**
@@ -102,8 +101,10 @@ export class DataNull extends Component {
  * @class Footer
  * @extends {Component}
  */
-export class Footer extends Component {
+class FooterInit extends Component {
     render() {
+        var {loginname} = this.props.User;
+        var myUrl = loginname ? '/user/' + loginname : '/signin';
         var arr = [];
         arr[this.props.index] = 'on';
         return (
@@ -126,7 +127,7 @@ export class Footer extends Component {
                         </Link>
                     </li>
                     <li className={arr[3]}>
-                        <Link to="/user/index">
+                        <Link to={myUrl}>
                             <i className="iconfont icon-wode"></i>我的
                         </Link>
                     </li>
@@ -135,10 +136,14 @@ export class Footer extends Component {
         );
     }
 }
-Footer.defaultProps = {
+FooterInit.defaultProps = {
     index: 0
 };
 
+
+var Footer = connect((state) => { return { User: state.User }; }, action('User'))(FooterInit); 
+
+export {Footer}
 /**
  * 提示登录
  * 

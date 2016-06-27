@@ -405,3 +405,59 @@ img {
         background: @style-main;
     }
 }
+
+
+/*
+    个人中心
+*/
+
+.user-index {
+    .headimg {
+        padding: 20px;
+        background: lighten(@style-main, 2%);
+        .user-headimg {
+            width: 80px;
+            height: 80px;
+        }
+    }
+    .name {
+        padding-top: 10px;
+        line-height: 24px;
+        font-size: 16px;
+        color: #fff;
+    }
+    .score {
+        font-size: 12px;
+        color: #eee;
+    }
+    .nav {
+        text-align: center;
+        background: #eee;
+        li {
+            line-height: 38px;
+            border-bottom: 3px solid transparent;
+        }
+        .on {
+            border-bottom: 3px solid @style-main;
+        }
+    }
+    .list {
+        a {
+            overflow: hidden;
+            height: 28px;
+            padding: 5px 10px;
+            line-height: 28px;
+            border-bottom: 1px solid #eee;
+            .tit {
+                font-size: 14px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            time {
+                padding-left: 20px;
+                font-size: 12px;
+                color: #aaa;
+            }
+        }
+    }
+}
