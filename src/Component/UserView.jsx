@@ -58,6 +58,7 @@ class Main extends Component {
     render() {
         var {data, loadAnimation, loadMsg, id, tabIndex} = this.state;
         var {UPDATE, User, params} = this.props;
+        User = User ? User : {};
         var main = data ? <Home data={data} tabIndex={tabIndex} UPDATE={UPDATE} /> : <DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} />;
         var title = params.loginname == User.loginname ? '个人中心' : params.loginname + '的个人中心';
         var footer = params.loginname == User.loginname ? <Footer index="3" /> : null;
@@ -72,9 +73,7 @@ class Main extends Component {
         );
     }
     componentDidMount() {
-        if (this.props.User) {
-            this.readyDOM(this.props)
-        }
+        this.readyDOM(this.props);
     }
     componentWillReceiveProps(np) {
         this.initState(np);
