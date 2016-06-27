@@ -9,7 +9,8 @@ export default (_ID) => {
         'SETSCROLL', //组件卸载前记录滚动条位置
         'RESET_DEFAULT_STATE', //重置默认状态
         'SIGNIN_SUCCESS', //登录成功
-        'SIGNOUT' //退出登录
+        'SIGNOUT', //退出登录
+        'UPDATE' //更新
     ];
 
     for (let i = 0; i < arr.length; i++) { 

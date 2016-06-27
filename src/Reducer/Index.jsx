@@ -208,6 +208,7 @@ const UserView = (_ID) => {
                 loginname: '', //用户名称
                 loadAnimation: true, //true显示加载动画，false 不显示加载动画
                 loadMsg: '加载中', //加载提示
+                tabIndex: 0, //tab索引
                 data: null, //页面的数据
                 scrollX: 0, //滚动条X
                 scrollY: 0 //滚动条Y 
@@ -262,6 +263,16 @@ const UserView = (_ID) => {
          */
         RESET_DEFAULT_STATE: (state, target) => {
             return cb.DEFAULTS();
+        },
+        /**
+         * 更新
+         * 
+         * @param {object} state
+         * @param {object} target
+         * @returns object
+         */
+        UPDATE: (state, target) => {
+            return merged(state, target);
         }
     }
     return (state = {}, action = {}) => {

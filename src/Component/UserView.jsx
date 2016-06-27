@@ -52,11 +52,13 @@ class Main extends Component {
                 delete this.get;
             }
         }
+
         this.initState(this.props);
     }
     render() {
-        var {data, loadAnimation, loadMsg, id} = this.state;
-        var main = data ? <Home data={data} /> : <DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} />;
+        var {data, loadAnimation, loadMsg, id, tabIndex} = this.state;
+        var {UPDATE} = this.props;
+        var main = data ? <Home data={data} tabIndex={tabIndex} UPDATE={UPDATE} /> : <DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} />;
 
         return (
             <div>
@@ -83,6 +85,11 @@ class Main extends Component {
 class Home extends Component {
     render() {
         var {avatar_url, loginname, score, recent_topics, recent_replies} = this.props.data;
+        var {tabIndex} = this.props;
+        var arrOn = [];
+        var arrDisplay = [];
+        arrOn[tabIndex] = 'on';
+        arrDisplay[tabIndex] = 'block';
         return (
             <div className="user-index">
                 <div className="headimg" data-flex="dir:top main:center cross:center">
@@ -92,12 +99,12 @@ class Home extends Component {
                 </div>
                 <nav className="nav">
                     <ul data-flex="box:mean">
-                        <li className="on">主题</li>
-                        <li>回复</li>
+                        <li onClick={() => { this.props.UPDATE({ tabIndex: 0 }) } } className={arrOn[0]}>主题</li>
+                        <li onClick={() => { this.props.UPDATE({ tabIndex: 1 }) } } className={arrOn[1]}>回复</li>
                     </ul>
                 </nav>
-                <HomeList list={recent_topics} display="block" />
-                <HomeList list={recent_replies} display="none" />
+                <HomeList list={recent_topics} display={arrDisplay[0]} />
+                <HomeList list={recent_replies} display={arrDisplay[1]} />
             </div>
         );
     }
