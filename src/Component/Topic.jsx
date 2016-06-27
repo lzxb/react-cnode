@@ -93,7 +93,7 @@ class Article extends Component {
                     </div>
                     <div className="data" data-flex="dir:top" data-flex-box="1">
                         <div data-flex="main:justify">
-                            <div className="name">{author.loginname}</div>
+                            <Link to={'/user/' + author.loginname} className="name">{author.loginname}</Link>
                             <time data-flex-box="1">{Tool.formatDate(create_at) }</time>
                             <div className="lou">#楼主</div>
                         </div>
@@ -140,7 +140,7 @@ class ReList extends Component {
                                 </div>
                                 <div className="main" data-flex-box="1">
                                     <div data-flex="main:justify">
-                                        <div className="name">{author.loginname}</div>
+                                        <Link to={'/user/' + author.loginname} className="name">{author.loginname}</Link>
                                         <time data-flex-box="1">{Tool.formatDate(create_at) }</time>
                                         <div className="lou">#{++index}</div>
                                     </div>

@@ -18,7 +18,7 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <Header title="我的消息" />
+                <Header title="消息" />
                 <TipMsgSignin />  
                 <Footer index="2" />
             </div>

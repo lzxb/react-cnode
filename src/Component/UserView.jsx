@@ -57,14 +57,17 @@ class Main extends Component {
     }
     render() {
         var {data, loadAnimation, loadMsg, id, tabIndex} = this.state;
-        var {UPDATE} = this.props;
+        var {UPDATE, User, params} = this.props;
         var main = data ? <Home data={data} tabIndex={tabIndex} UPDATE={UPDATE} /> : <DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} />;
+        var title = params.loginname == User.loginname ? '个人中心' : params.loginname + '的个人中心';
+        var footer = params.loginname == User.loginname ? <Footer index="3" /> : null;
+        var leftIcon = params.loginname == User.loginname ? null : 'fanhui';
 
         return (
             <div>
-                <Header title="个人中心" />
+                <Header title={title} leftIcon={leftIcon} />
                 {main}
-                <Footer index="3" />
+                {footer}
             </div>
         );
     }
