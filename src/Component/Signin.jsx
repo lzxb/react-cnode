@@ -27,7 +27,7 @@ class Main extends Component {
                     res.accesstoken = accesstoken;
                     this.props.SIGNIN_SUCCESS(res);
                     this.context.router.push({
-                        pathname: '/user/index'
+                        pathname: '/user/' + res.loginname
                     });
                 } else {
                     alert('登录失败');
