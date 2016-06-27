@@ -103,8 +103,7 @@ export class DataNull extends Component {
  */
 class FooterInit extends Component {
     render() {
-        var {loginname} = this.props.User;
-        var myUrl = loginname ? '/user/' + loginname : '/signin';
+        var myUrl = this.props.User && this.props.User.loginname ? '/user/' + this.props.User.loginname : '/signin';
         var arr = [];
         arr[this.props.index] = 'on';
         return (
