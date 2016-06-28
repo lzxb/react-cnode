@@ -99,6 +99,42 @@ img {
     time {
         font-size: 12px;
     }
+    .bottom {
+        margin-top: 5px;
+    }
+    .font {
+        .iconfont {
+            padding: 3px 5px;
+            margin-right: 5px;
+            border-radius: 5px;
+            color: #fff;
+        }
+    }
+}
+
+
+/*
+    主题类型图标
+*/
+
+.icon-top {
+    background: red;
+}
+
+.icon-job {
+    background: #00b38a;
+}
+
+.icon-share {
+    background: green;
+}
+
+.icon-ask {
+    background: blue;
+}
+
+.icon-good {
+    background: violet;
 }
 
 .data-load {
@@ -182,11 +218,11 @@ img {
 
 .topic {
     .user {
+        position: relative;
         padding: 10px;
         line-height: 20px;
         font-size: 12px;
         border-bottom: 1px solid #ddd;
-        .headimg {}
         .name {
             font-size: 14px;
             color: @style-main;
@@ -205,6 +241,20 @@ img {
         .qt {
             div {
                 padding-right: 5px;
+            }
+        }
+        .font {
+            position: absolute;
+            top: 0;
+            right: 0;
+            .iconfont {
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+                text-align: center;
+                font-size: 32px;
+                color: #fff;
+                opacity: 0.8;
             }
         }
     }
@@ -404,6 +454,9 @@ img {
         color: #fff;
         background: @style-main;
     }
+    .btn-red {
+        background: #e63e3e;
+    }
 }
 
 
@@ -430,7 +483,7 @@ img {
         font-size: 12px;
         color: #eee;
     }
-    .nav {
+    .tab-nav {
         text-align: center;
         background: #eee;
         li {

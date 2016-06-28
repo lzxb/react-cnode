@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import {Tool, merged, GetNextPage} from '../Tool';
-import {DataLoad, Footer, UserHeadImg} from './common/index';
+import {DataLoad, Footer, UserHeadImg, TabIcon} from './common/index';
 
 
 /**
@@ -57,7 +57,10 @@ class List extends Component {
                         return (
                             <li key={index}>
                                 <Link to={"/topic/" + id}>
-                                    <h3 className="tit">{title}</h3>
+                                    <div data-flex="box:first">
+                                        <div className="font" data-flex="cross:center"><TabIcon {...item} /></div>
+                                        <h3 className="tit">{title}</h3>
+                                    </div>
                                     <div className="bottom" data-flex="box:first">
                                         <div className="author" data-flex="cross:center">
                                             <UserHeadImg url={author.avatar_url} />

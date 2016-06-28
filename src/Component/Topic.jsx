@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import {Tool, merged, GetNextPage} from '../Tool';
-import {DataLoad, DataNull, Header, TipMsgSignin, UserHeadImg} from './common/index';
+import {DataLoad, DataNull, Header, TipMsgSignin, UserHeadImg, TabIcon} from './common/index';
 
 /**
  * 模块入口
@@ -96,6 +96,7 @@ class Article extends Component {
                             <Link to={'/user/' + author.loginname} className="name">{author.loginname}</Link>
                             <time data-flex-box="1">{Tool.formatDate(create_at) }</time>
                             <div className="lou">#楼主</div>
+                            <div className="font" data-flex="main:center cross:center"><TabIcon {...this.props} /></div>
                         </div>
                         <div className="qt" data-flex>
                             <div>阅读：{visit_count}</div>

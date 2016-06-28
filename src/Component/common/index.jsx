@@ -140,7 +140,7 @@ FooterInit.defaultProps = {
 };
 
 
-var Footer = connect((state) => { return { User: state.User }; }, action('User'))(FooterInit); 
+var Footer = connect((state) => { return { User: state.User }; }, action('User'))(FooterInit);
 
 export {Footer}
 /**
@@ -169,6 +169,29 @@ export class TipMsgSignin extends Component {
  */
 export class UserHeadImg extends Component {
     render() {
-       return (<div className="user-headimg"  style={{ backgroundImage: 'url(' + this.props.url + ')' }}></div>)
+        return (<div className="user-headimg"  style={{ backgroundImage: 'url(' + this.props.url + ')' }}></div>)
+    }
+}
+
+/**
+ * 生成主题类型小图标
+ * 
+ * @export
+ * @class tabIcon
+ * @extends {Component}
+ */
+export class TabIcon extends Component {
+    render() {
+        var {tab, top, good} = this.props;
+
+        if (top) {
+            tab = 'top';
+        } else if (good) {
+            tab = 'good';
+        }
+
+        return (
+            <i className={'iconfont icon-' + tab}></i>
+        );
     }
 }

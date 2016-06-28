@@ -63,10 +63,11 @@ class Main extends Component {
         var title = params.loginname == User.loginname ? '个人中心' : params.loginname + '的个人中心';
         var footer = params.loginname == User.loginname ? <Footer index="3" /> : null;
         var leftIcon = params.loginname == User.loginname ? null : 'fanhui';
+        var rightIcon = params.loginname == User.loginname ? 'tuichu' : null;
 
         return (
             <div>
-                <Header title={title} leftIcon={leftIcon} />
+                <Header title={title} leftIcon={leftIcon} rightIcon={rightIcon} rightTo="/signout"/>
                 {main}
                 {footer}
             </div>
@@ -99,12 +100,10 @@ class Home extends Component {
                     <div className="name">{loginname}</div>
                     <div className="score">积分：{score}</div>
                 </div>
-                <nav className="nav">
-                    <ul data-flex="box:mean">
-                        <li onClick={() => { this.props.UPDATE({ tabIndex: 0 }) } } className={arrOn[0]}>主题</li>
-                        <li onClick={() => { this.props.UPDATE({ tabIndex: 1 }) } } className={arrOn[1]}>回复</li>
-                    </ul>
-                </nav>
+                <ul className="tab-nav" data-flex="box:mean">
+                    <li onClick={() => { this.props.UPDATE({ tabIndex: 0 }) } } className={arrOn[0]}>主题</li>
+                    <li onClick={() => { this.props.UPDATE({ tabIndex: 1 }) } } className={arrOn[1]}>回复</li>
+                </ul>
                 <HomeList list={recent_topics} display={arrDisplay[0]} />
                 <HomeList list={recent_replies} display={arrDisplay[1]} />
             </div>
