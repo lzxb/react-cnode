@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import {Tool, merged, GetNextPage} from '../Tool';
-import {DataLoad, DataNull, Header, TipMsgSignin, UserHeadImg, TabIcon} from './common/index';
+import {DataLoad, DataNull, Header, TipMsgSignin, UserHeadImg, TabIcon, GetData} from './common/index';
 
 /**
  * 模块入口
@@ -14,39 +14,9 @@ import {DataLoad, DataNull, Header, TipMsgSignin, UserHeadImg, TabIcon} from './
 class Main extends Component {
     constructor(props) {
         super(props);
-
-        /**
-         * 初始化组件状态
-         * 
-         * @returns
-         */
-        this.initState = (props) => {
-            let {state, params} = props;
-            if (state.id === params.id) {
-                this.state = state;
-            } else {
-                this.state = state.defaults;
-            }
-        }
-
-        /**
-         * DOM初始化完成后执行代码
-         * 
-         * @param {any} props
-         */
-        this.readyDOM = (props) => {
-            let { GET_LATEST_VIEW_DATA_SUCCESS, GET_LATEST_VIEW_DATA_ERROR} = props;
-            let {scrollX, scrollY, mdrender} = this.state;
-            var url = '/api/v1/topic/' + (props.params.id || '');
-            this.get = Tool.get(url, { mdrender }, GET_LATEST_VIEW_DATA_SUCCESS, GET_LATEST_VIEW_DATA_ERROR);
-            window.scrollTo(scrollX, scrollY); //设置滚动条位置
-        }
-
-        this.initState(this.props);
     }
     render() {
-        var {data, loadAnimation, loadMsg, id} = this.state;
-
+        var {data, loadAnimation, loadMsg, id} = this.props.state;
         var main = data ? <Article {...data} /> : <DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} />;
 
         return (
@@ -55,16 +25,6 @@ class Main extends Component {
                 {main}
             </div>
         );
-    }
-    componentDidMount() {
-        this.readyDOM(this.props);
-    }
-    componentWillReceiveProps(np) {
-        this.initState(np);
-    }
-    componentWillUnmount() {
-        this.props.SETSCROLL(); //记录滚动条位置
-        this.get.end();
     }
 }
 
@@ -183,5 +143,13 @@ class ReplyBox extends Component {
         );
     }
 }
-
-export default connect((state) => { return { state: state.Topic }; }, action('Topic'))(Main); //连接redux
+export default GetData({
+    id: 'Topic', //唯一的id标识
+    url: (props, state) => {
+        return '/api/v1/topic/' + (props.params.id || '');
+    }, //服务器请求的地址
+    data: (props, state) => { //发送给服务器的数据
+        return { mdrender: state.mdrender }
+    },
+    Render: Main //渲染视图组件
+});

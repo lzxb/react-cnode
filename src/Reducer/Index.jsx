@@ -110,172 +110,54 @@ const List = (_ID) => {
     }
 }
 
+
 /**
- * 获取详情
+ * 获取页面详情
  * 
- * @param {string} _ID
- * @returns object
+ * @param {any} _ID
+ * @param {any} seting
+ * @returns
  */
-const View = (_ID) => {
+const View = (_ID, seting = {}) => {
 
     const cb = {
         DEFAULTS: () => {
-            var defaults = {
-                id: '', //当前页面的id
+            var defaults = merged({
+                href: '', //当前页面的href
                 loadAnimation: true, //true显示加载动画，false 不显示加载动画
                 loadMsg: '加载中', //加载提示
                 data: null, //页面的数据
                 scrollX: 0, //滚动条X
                 scrollY: 0, //滚动条Y 
                 mdrender: true //当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
-            };
-            defaults.defaults = merged(defaults);
-            return defaults;
-        },
-
-        /**
-         * 获取详情成功
-         * 
-         * @param {object} state
-         * @param {object} target
-         */
-        GET_LATEST_VIEW_DATA_SUCCESS: (state, target) => {
-            return merged(state, {
-                id: target.data.id,
-                loadMsg: '加载成功',
-                loadAnimation: false,
-                data: target.data
-            });
-        },
-
-        /**
-         * 获取详情失败
-         * 
-         * @param {object} state
-         * @param {object} target
-         */
-        GET_LATEST_VIEW_DATA_ERROR: (state, target) => {
-            return merged(state, {
-                loadMsg: '加载失败',
-                loadAnimation: false
-            });
-        },
-        /**
-         * (组件卸载前，记录滚动条位置)
-         * 
-         * @param state (状态)
-         * @param target (更新目标)
-         */
-        SETSCROLL: (state, target) => {
-            state.scrollX = window.scrollX;
-            state.scrollY = window.scrollY;
-            return merged(state);
-        },
-        /**
-         * 重置默认状态，通过Link组件访问当前页面时，经常需要重置组件为默认状态
-         * 
-         * @param {object} state
-         * @param {object} target
-         * @returns object
-         */
-        RESET_DEFAULT_STATE: (state, target) => {
-            return cb.DEFAULTS();
-        }
-    }
-    return (state = {}, action = {}) => {
-
-        if (action._ID && action._ID !== _ID) {
-            return state;
-        } else if (cb[action.type]) {
-            return cb[action.type](state, action.target);
-        } else {
-            return cb.DEFAULTS();
-        }
-    }
-}
-
-/**
- * 用户详情
- * 
- * @param {string} _ID
- * @returns object
- */
-const UserView = (_ID) => {
-
-    const cb = {
-        DEFAULTS: () => {
-            var defaults = {
-                loginname: '', //用户名称
-                loadAnimation: true, //true显示加载动画，false 不显示加载动画
-                loadMsg: '加载中', //加载提示
-                tabIndex: 0, //tab索引
-                data: null, //页面的数据
-                scrollX: 0, //滚动条X
-                scrollY: 0 //滚动条Y 
-            };
+            }, seting);
+            
             defaults.defaults = merged(defaults);
             return defaults;
         },
         /**
-         * 获取详情成功
-         * 
-         * @param {object} state
-         * @param {object} target
-         */
-        GET_LATEST_VIEW_DATA_SUCCESS: (state, target) => {
-            return merged(state, {
-                loginname: target.data.loginname,
-                loadMsg: '加载成功',
-                loadAnimation: false,
-                data: target.data
-            });
-        },
-
-        /**
-         * 获取详情失败
-         * 
-         * @param {object} state
-         * @param {object} target
-         */
-        GET_LATEST_VIEW_DATA_ERROR: (state, target) => {
-            return merged(state, {
-                loadMsg: '加载失败',
-                loadAnimation: false
-            });
-        },
-        /**
-         * (组件卸载前，记录滚动条位置)
-         * 
-         * @param state (状态)
-         * @param target (更新目标)
-         */
-        SETSCROLL: (state, target) => {
-            state.scrollX = window.scrollX;
-            state.scrollY = window.scrollY;
-            return merged(state);
-        },
-        /**
          * 重置默认状态，通过Link组件访问当前页面时，经常需要重置组件为默认状态
          * 
-         * @param {object} state
-         * @param {object} target
-         * @returns object
+         * @param {Object} state
+         * @param {Object} target
+         * @returns Object
          */
         RESET_DEFAULT_STATE: (state, target) => {
             return cb.DEFAULTS();
         },
         /**
-         * 更新
+         * 更新状态
          * 
-         * @param {object} state
-         * @param {object} target
-         * @returns object
+         * @param {Object} state
+         * @param {Object} target
+         * @returns Object
          */
-        UPDATE: (state, target) => {
+        SETSTATE: (state, target) => {
             return merged(state, target);
         }
     }
     return (state = {}, action = {}) => {
+
         if (action._ID && action._ID !== _ID) {
             return state;
         } else if (cb[action.type]) {
@@ -311,6 +193,7 @@ const User = (state = JSON.parse(Tool.localItem('User')), action) => {
 export default {
     IndexList: List('IndexList'),
     Topic: View('Topic'),
-    UserView: UserView('UserView'),
+    MyMessages: View('MyMessages'),
+    UserView: View('UserView', { tabIndex: 0 }),
     User
 };
