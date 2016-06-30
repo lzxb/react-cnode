@@ -2,10 +2,11 @@ import React, {Component, PropTypes} from 'react';
 import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../../Action/Index';
-import {Tool, merged, GetNextPage} from '../../Tool';
+import {Tool, merged} from '../../Tool';
 import GetData from './GetData';
-
-
+import GetNextPage from './GetNextPage';
+ 
+export {GetData, GetNextPage}
 /**
  * (加载动画)
  * 
@@ -196,5 +197,3 @@ export class TabIcon extends Component {
         );
     }
 }
-
-export {GetData}

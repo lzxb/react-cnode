@@ -11,11 +11,12 @@ module.exports = {
         filename: '[name].js' //编译后的文件名字
     },
     module: {
-        loaders: [{
-            test: /\.js$/,
-            exclude: /^node_modules$/,
-            loader: 'babel?presets=es2015'
-        }, {
+        loaders: [
+            {
+                test: /\.js$/,
+                exclude: /^node_modules$/,
+                loader: 'babel?presets=es2015'
+            }, {
                 test: /\.css$/,
                 exclude: /^node_modules$/,
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader')

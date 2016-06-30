@@ -2,8 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
-import {Tool, merged, GetNextPage} from '../Tool';
-import {DataLoad, Footer, UserHeadImg, TabIcon} from './common/index';
+import {Tool, merged} from '../Tool';
+import {DataLoad, Footer, UserHeadImg, TabIcon, GetNextPage} from './common/index';
 
 
 /**
@@ -96,72 +96,36 @@ class List extends Component {
 class Main extends Component {
     constructor(props) {
         super(props);
-
-        /**
-         * (DOM渲染完成之后执行)
-         * 
-         */
-        this.redayDOM = (props) => {
-
-            let {location, state, GET_LATEST_LIST_DATA_START, GET_LATEST_LIST_DATA_SUCCESS, GET_LATEST_LIST_DATA_ERROR} = props;
-            let {data, page, limit, mdrender, nextBtn, scrollX, scrollY} = state;
-
-            if (this.GetNextPage || !nextBtn) return false; //如果已经开启了分页插件，或不需要开启分页，进行拦截，避免造成无限循环
-            window.scrollTo(scrollX, scrollY); //设置滚动条位置
-            this.GetNextPage = new GetNextPage(this.refs.dataload, {
-                url: '/api/v1/topics',
-                data: {
-                    tab: location.query.tab || 'all',
-                    page,
-                    limit,
-                    mdrender
-                },
-                start: GET_LATEST_LIST_DATA_START,
-                load: GET_LATEST_LIST_DATA_SUCCESS,
-                error: GET_LATEST_LIST_DATA_ERROR
-            });
-        }
-
-        this.unmount = (props) => {
-            if (this.GetNextPage) {
-                this.GetNextPage.end();
-                delete this.GetNextPage;
-            }
-        }
-
     }
     render() {
-        let {data, loadAnimation, loadMsg} = this.props.state;
-        let tab = this.props.location.query.tab || 'all';
+        var {data, loadAnimation, loadMsg} = this.props.state;
+        var tab = this.props.location.query.tab || 'all';
         return (
-            <div>
+            <div className="index-list-box">
                 <Nav tab={tab} />
                 {
                     data.length > 0 ? <List list={data} /> : null
                 }
-                <div ref="dataload"><DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} /></div>
                 <Footer index="0" />
             </div>
         );
     }
-    componentDidMount() {
-        this.redayDOM(this.props);
-    }
-    shouldComponentUpdate(np) {
-        if (this.props.location.search != np.location.search) {
-            this.unmount(this.props);
-            this.props.RESET_DEFAULT_STATE(); //重置成初始状态
-            return false;
-        }
-        return true;
-    }
-    componentDidUpdate() {
-        this.redayDOM(this.props);
-    }
-    componentWillUnmount() {
-        this.unmount(this.props);
-        this.props.SETSCROLL(); //记录滚动条位置
-    }
 }
 
-export default connect((state) => { return { state: state.IndexList }; }, action('IndexList'))(Main); //连接redux
+
+export default GetNextPage({
+    id: 'IndexList',  //应用关联使用的redux
+    component: Main, //接收数据的组件入口
+    url: '/api/v1/topics',
+    data: (props, state) => { //发送给服务器的数据
+        var {page, limit, mdrender} = state;
+        return {
+            tab: props.location.query.tab || 'all',
+            page,
+            limit,
+            mdrender
+        }
+    },
+    success: (state) => { return state; }, //请求成功后执行的方法
+    error: (state) => { return state } //请求失败后执行的方法
+});

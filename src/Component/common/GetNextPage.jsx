@@ -3,9 +3,9 @@ import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../../Action/Index';
 import {Tool, merged} from '../../Tool';
-import {DataLoad, Footer, UserHeadImg, TabIcon} from './index';
+import {DataLoad, DataNull, Header, TipMsgSignin, Footer, UserHeadImg} from './index';
 
-
+import GetNextPage from 'get-next-page';
 /**
  * 模块入口方法
  * 
@@ -50,11 +50,18 @@ const Main = (mySeting) => {
                 var {pathname, search} = location;
                 this.path = pathname + search;
 
-                if (typeof state.path[this.path] === 'object' && state.path[this.path].path === this.path) {
+                if (typeof this.action == 'undefined' && location.action == 'PUSH') {
+                    this.action = false;
+                } else {
+                    this.action = true;
+                }
+                
+                if (typeof state.path[this.path] === 'object' && state.path[this.path].path === this.path && this.action) {
                     this.state = state.path[this.path];
                 } else {
                     this.state = merged(state.defaults); //数据库不存在当前的path数据，则从默认对象中复制，注意：要复制对象，而不是引用
                     this.state.path = this.path;
+                    this.action = false;
                 }
 
             }
@@ -67,21 +74,60 @@ const Main = (mySeting) => {
                 var {scrollX, scrollY} = this.state;
                 if (this.get) return false; //已经加载过
                 window.scrollTo(scrollX, scrollY); //设置滚动条位置
-                this.get = Tool.get(this.getUrl(), this.getData(), (res) => {
-                    this.state.loadMsg = '加载成功';
-                    this.state.loadAnimation = false;
-                    this.state.data = res.data;
-                    this.props.setState(success(this.state) || this.state);
-                }, () => {
-                    this.state.loadMsg = '加载失败';
-                    this.state.loadAnimation = false;
-                    this.props.setState(error(this.state) || this.state);
+                this.get = new GetNextPage(this.refs.dataload, {
+                    url: this.getUrl(),
+                    data: this.getData(),
+                    start: this.start,
+                    load: this.load,
+                    error: this.error
                 });
             }
 
+            /**
+             * 请求开始
+             */
+            this.start = () => {
+                this.state.loadAnimation = true;
+                this.state.loadMsg = '正在加载中...';
+                this.props.setState(this.state);
+            }
+            /**
+             * 下一页加载成功
+             * 
+             * @param {Object} res
+             */
+            this.load = (res) => {
+                var {state } = this;
+                var {data} = res;
+                if (!data.length && data.length < before.limit) {
+                    state.nextBtn = false;
+                    state.loadMsg = '没有了';
+                } else {
+                    state.nextBtn = true;
+                    state.loadMsg = '上拉加载更多';
+                }
+                Array.prototype.push.apply(state.data, data);
+                state.loadAnimation = false;
+                state.page = ++state.page;
+                this.props.setState(state);
+            }
+
+            /**
+             * 请求失败时
+             */
+            this.error = () => {
+                this.state.loadAnimation = false;
+                this.state.loadMsg = '加载失败';
+                this.props.setState(this.state);
+            }
+
+            /**
+             * url更改时
+             */
             this.unmount = () => {
                 this.get.end();
                 delete this.get;
+                delete this.action;
                 this.state.scrollX = window.scrollX; //记录滚动条位置
                 this.state.scrollY = window.scrollY;
                 this.props.setState(this.state);
@@ -117,7 +163,13 @@ const Main = (mySeting) => {
             this.initState(this.props);
         }
         render() {
-            return <this.props.seting.component {...this.props} state={this.state} />;
+            var {loadAnimation, loadMsg} = this.state;
+            return (
+                <div>
+                    <this.props.seting.component {...this.props} state={this.state} />
+                    <div ref="dataload"><DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} /></div>
+                </div>
+            );
         }
         /**
          * 在初始化渲染执行之后立刻调用一次，仅客户端有效（服务器端不会调用）。
@@ -160,7 +212,7 @@ const Main = (mySeting) => {
     }
     Index.defaultProps = { seting }
 
-    return connect((state) => { return { state: state[seting.id], User: state.User} }, action(action.id))(Index); //连接redux
+    return connect((state) => { return { state: state[seting.id], User: state.User } }, action(action.id))(Index); //连接redux
 }
 
 
