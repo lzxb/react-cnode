@@ -17,6 +17,7 @@ const Main = (mySeting) => {
         id: '', //应用唯一id表示
         type: 'GET', //请求类型
         url: '', //请求地址
+        stop: true, // true发送请求，false 不发送请求
         data: null, //发送给服务器的数据
         component: <div></div>, //数据回调给的组件
         success: (state) => { return state; }, //请求成功后执行的方法
@@ -67,6 +68,9 @@ const Main = (mySeting) => {
                 var {scrollX, scrollY} = this.state;
                 if (this.get) return false; //已经加载过
                 window.scrollTo(scrollX, scrollY); //设置滚动条位置
+
+                if (!this.getStop()) return false; //请求被拦截
+
                 this.get = Tool.get(this.getUrl(), this.getData(), (res) => {
                     this.state.loadMsg = '加载成功';
                     this.state.loadAnimation = false;
@@ -80,8 +84,10 @@ const Main = (mySeting) => {
             }
 
             this.unmount = () => {
-                this.get.end();
-                delete this.get;
+                if (typeof this.get != 'undefined') {
+                    this.get.end();
+                    delete this.get;
+                }
                 this.state.scrollX = window.scrollX; //记录滚动条位置
                 this.state.scrollY = window.scrollY;
                 this.props.setState(this.state);
@@ -113,7 +119,16 @@ const Main = (mySeting) => {
                     return this.props.location.query;
                 }
             }
-
+            this.getStop = () => {
+                var {stop} = this.props.seting;
+                if (typeof stop === 'function') {
+                    return stop(this.props, this.state);
+                } else if (stop && typeof stop === 'string') {
+                    return stop;
+                } else {
+                    return true;
+                }
+            }
             this.initState(this.props);
         }
         render() {
@@ -160,7 +175,7 @@ const Main = (mySeting) => {
     }
     Index.defaultProps = { seting }
 
-    return connect((state) => { return { state: state[seting.id], User: state.User} }, action(action.id))(Index); //连接redux
+    return connect((state) => { return { state: state[seting.id], User: state.User } }, action(action.id))(Index); //连接redux
 }
 
 
