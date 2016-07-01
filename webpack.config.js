@@ -36,14 +36,15 @@ module.exports = {
                 test: /\.jsx$/,
                 exclude: /^node_modules$/,
                 loaders: ['jsx', 'babel?presets[]=es2015,presets[]=react']
-            }]
+            }
+        ]
     },
     plugins: [
-        // new webpack.DefinePlugin({ //编译成生产版本
-        //     'process.env': {
-        //         NODE_ENV: JSON.stringify('production')
-        //     }
-        // }),
+        new webpack.DefinePlugin({ //编译成生产版本
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
         new ExtractTextPlugin('[name].css')
     ],
     resolve: {

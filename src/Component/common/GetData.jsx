@@ -17,7 +17,7 @@ const Main = (mySeting) => {
         id: '', //应用唯一id表示
         type: 'GET', //请求类型
         url: '', //请求地址
-        stop: true, // true发送请求，false 不发送请求
+        stop: false, //true 拦截请求，false不拦截请求
         data: null, //发送给服务器的数据
         component: <div></div>, //数据回调给的组件
         success: (state) => { return state; }, //请求成功后执行的方法
@@ -68,8 +68,7 @@ const Main = (mySeting) => {
                 var {scrollX, scrollY} = this.state;
                 if (this.get) return false; //已经加载过
                 window.scrollTo(scrollX, scrollY); //设置滚动条位置
-
-                if (!this.getStop()) return false; //请求被拦截
+                if (this.getStop()) return false; //请求被拦截
 
                 this.get = Tool.get(this.getUrl(), this.getData(), (res) => {
                     this.state.loadMsg = '加载成功';
@@ -123,11 +122,8 @@ const Main = (mySeting) => {
                 var {stop} = this.props.seting;
                 if (typeof stop === 'function') {
                     return stop(this.props, this.state);
-                } else if (stop && typeof stop === 'string') {
-                    return stop;
-                } else {
-                    return true;
-                }
+                } 
+                return stop;
             }
             this.initState(this.props);
         }

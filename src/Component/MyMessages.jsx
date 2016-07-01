@@ -35,7 +35,9 @@ class Main extends Component {
 class Content extends Component {
     render () {
         return (
-            <div>ddddd</div>
+            <div className="msg-box">
+                <h2 className="tit">最新消息</h2>
+            </div>
         );
     }
 }
@@ -45,7 +47,7 @@ export default GetData({
     component: Main, //接收数据的组件入口
     url: '/api/v1/messages', //服务器请求的地址
     stop: (props, state) => {
-        return Boolean(props.User); //true 发送请求， false不发送
+        return !Boolean(props.User); //true 拦截请求，false不拦截请求
     },
     data: (props, state) => { //发送给服务器的数据
         return { accesstoken: props.User.accesstoken }
