@@ -14,44 +14,88 @@ import {DataLoad, DataNull, Header, TipMsgSignin, Footer, GetData} from './commo
 class Main extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            title: '',
+            tab: '',
+            content: '',
+            accesstoken: this.props.User ? this.props.User.accesstoken : ''
+        };
+
         this.rightClick = () => {
-            console.log('提交');
+            var {state} = this;
+
+            if (!state.tab) {
+                return alert('请选择发表类型');
+            } else if (state.title.length < 10) {
+                return alert('标题字数10字以上');
+            } else if (state.content.length < 30) {
+                return alert('内容字数30字以上');
+            }
+
+            Tool.post('/api/v1/topics', this.state, (res) => {
+                if (res.success) {
+                    this.context.router.push({
+                        pathname: '/topic/' + res.topic_id
+                    });
+                } else {
+                    alert('发表失败');
+                }
+            }, () => {
+                alert('发表失败');
+            });
+
         }
+
+        this.tabInput = (e) => {
+            this.state.tab = e.target.value;
+        }
+
+        this.titleInput = (e) => {
+            this.state.title = e.target.value;
+        }
+        this.contentInput = (e) => {
+            this.state.content = e.target.value;
+        }
+
     }
     render() {
-        var {loadAnimation, loadMsg, id} = this.props.state;
         var { User} = this.props;
+        var headerSet = {};
         var main = null;
         if (!User) {
             main = <TipMsgSignin />
         } else {
-            main = <NewTopic />
+            main = <NewTopic {...this.state} tabInput={this.tabInput} titleInput={this.titleInput} contentInput={this.contentInput} />
+            headerSet = {
+                rightIcon: 'fabu',
+                rightClick: this.rightClick
+            };
         }
         return (
             <div>
-                <Header title="发表主题" rightIcon="fabu" rightClick={this.rightClick}/>
+                <Header title="发表主题" {...headerSet} />
                 {main}
                 <Footer index="1" />
             </div>
         );
     }
-    componentDidMount() {
-
+    shouldComponentUpdate() {
+        return false;
     }
-    componentWillReceiveProps() {
+}
 
-    }
-    componentWillUnmount() {
-
-    }
+Main.contextTypes = {
+    router: React.PropTypes.object.isRequired
 }
 
 class NewTopic extends Component {
     render() {
+        console.log(this.props);
         return (
             <div className="topic-create">
                 <div className="item">
-                    <select name="tab">
+                    <select name="tab" defaultValue={this.props.tab} onInput={this.props.tabInput}>
                         <option value="">请选择发表类型</option>
                         <option value="share">分享</option>
                         <option value="ask">问答</option>
@@ -59,26 +103,14 @@ class NewTopic extends Component {
                     </select>
                 </div>
                 <div className="item">
-                    <input type="text" placeholder="标题字数 10 字以上" />
+                    <input type="text" defaultValue={this.props.title} onInput={this.props.titleInput} placeholder="标题字数 10 字以上" />
                 </div>
                 <div className="item">
-                    <textarea placeholder="内容字数 30 字以上"></textarea>
+                    <textarea defaultValue={this.props.content} onInput={this.props.contentInput} placeholder="内容字数 30 字以上"></textarea>
                 </div>
             </div>
         );
     }
 }
 
-
-export default GetData({
-    id: 'TopicCreate',  //应用关联使用的redux
-    component: Main, //接收数据的组件入口
-    stop: (props, state) => {
-        return false; //true 拦截请求，false不拦截请求
-    },
-    data: (props, state) => { //发送给服务器的数据
-        return { accesstoken: props.User.accesstoken }
-    },
-    success: (state) => { return state; }, //请求成功后执行的方法
-    error: (state) => { return state } //请求失败后执行的方法
-});
+export default connect((state) => { return { User: state.User } }, action('TopicCreate'))(Main); //连接redux

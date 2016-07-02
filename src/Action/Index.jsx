@@ -1,8 +1,8 @@
 export default (_ID) => {
     var action = {};
     var arr = [
-        'SIGNIN_SUCCESS', //登录成功
-        'SIGNOUT', //退出登录
+        'signinSuccess', //登录成功
+        'signin', //退出登录
         'setState' //设置状态
     ];
 

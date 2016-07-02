@@ -9,10 +9,10 @@ import {Tool, merged} from '../Tool';
 const User = (state = JSON.parse(Tool.localItem('User')), action) => {
 
     switch (action.type) {
-        case 'SIGNIN_SUCCESS': //登录成功
+        case 'signinSuccess': //登录成功
             Tool.localItem('User', JSON.stringify(action.target));
             return action.target;
-        case 'SIGNOUT': //退出
+        case 'signin': //退出
             Tool.removeLocalItem('User');
             return null;
         default:
@@ -59,5 +59,4 @@ const IndexList = DB('IndexList', { page: 1, nextBtn: true, limit: 10, mdrender:
 const Topic = DB('Topic'); //主题详情
 const MyMessages = DB('MyMessages'); //消息
 const UserView = DB('UserView', { tabIndex: 0 }); //用户详情
-const TopicCreate = DB('TopicCreate'); //发表主题
-export default { IndexList, Topic, MyMessages, UserView, User , TopicCreate}
+export default { IndexList, Topic, MyMessages, UserView, User}

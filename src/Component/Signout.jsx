@@ -15,7 +15,7 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.signout= () => {
-            this.props.SIGNOUT();
+            this.props.signin();
             this.context.router.replace({pathname: '/'});
         }
 
