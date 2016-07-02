@@ -42,7 +42,7 @@ class Main extends Component {
 
 class Home extends Component {
     render() {
-        var {avatar_url, loginname, score, recent_topics, recent_replies} = this.props.data;
+        var {avatar_url, loginname, score, recent_topics, recent_replies, create_at} = this.props.data;
         var {tabIndex} = this.props;
         var arrOn = [];
         var arrDisplay = [];
@@ -53,7 +53,7 @@ class Home extends Component {
                 <div className="headimg" data-flex="dir:top main:center cross:center">
                     <UserHeadImg url={avatar_url} />
                     <div className="name">{loginname}</div>
-                    <div className="score">积分：{score}</div>
+                    <div className="score">积分：{score}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注册于：{Tool.formatDate(create_at) }</div>
                 </div>
                 <ul className="tab-nav" data-flex="box:mean">
                     <li onClick={() => { this.props.tab(0) } } className={arrOn[0]}>主题</li>

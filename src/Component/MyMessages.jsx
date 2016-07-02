@@ -54,9 +54,9 @@ class Content extends Component {
                             }
                             return (
                                 <li data-flex="box:first" key={index}>
-                                    <div className="user">
+                                    <Link className="user" to={`/user/${author.loginname}`}>
                                         <UserHeadImg url={author.avatar_url} />
-                                    </div>
+                                    </Link>
                                     <div>
                                         <div className="name">{author.loginname}<time>{Tool.formatDate(reply.create_at) }</time></div>
                                         <div data-flex="box:first">
