@@ -2,7 +2,7 @@
 @style-bg: #eee;
 @style-main : #80bd01;
 @style-color: #2c3e50;
-body, ul, li, a, p, h2, h3, textarea, button, input {
+body, ul, li, a, p, h2, h3, textarea, button, input,select {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -566,5 +566,44 @@ img {
                 background: red;
             }
         }
+    }
+}
+
+/*
+    发表主题
+*/
+.topic-create {
+    .item {
+        padding: 5px 10px;
+        border-bottom: 1px solid #eee;
+        color: #444;
+    }
+    .key {
+        width: 40px;
+        line-height: 28px;
+        font-size: 14px;
+        color: #999;
+    }
+    select {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        height: 28px;
+        line-height: 28px;
+        border-radius: 5px;
+        font-size: 14px;
+        color: #222;
+    }
+    input{
+        box-sizing: border-box;
+        width: 100%;
+        line-height: 28px;
+    }
+    textarea {
+        box-sizing: border-box;
+        width: 100%;
+        height: 300px;
+        line-height: 24px;
+        resize: none;
     }
 }

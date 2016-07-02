@@ -59,4 +59,5 @@ const IndexList = DB('IndexList', { page: 1, nextBtn: true, limit: 10, mdrender:
 const Topic = DB('Topic'); //主题详情
 const MyMessages = DB('MyMessages'); //消息
 const UserView = DB('UserView', { tabIndex: 0 }); //用户详情
-export default { IndexList, Topic, MyMessages, UserView, User }
+const TopicCreate = DB('TopicCreate'); //发表主题
+export default { IndexList, Topic, MyMessages, UserView, User , TopicCreate}

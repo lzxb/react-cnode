@@ -5,7 +5,7 @@ import action from '../../Action/Index';
 import {Tool, merged} from '../../Tool';
 import GetData from './GetData';
 import GetNextPage from './GetNextPage';
- 
+
 export {GetData, GetNextPage}
 /**
  * (加载动画)
@@ -37,7 +37,7 @@ DataLoad.defaultProps = {
  */
 export class Header extends Component {
     render() {
-        let {title, leftTo, leftIcon, rightTo, rightIcon } = this.props;
+        let {title, leftTo, leftIcon, rightTo, rightIcon, rightClick } = this.props;
         let left = null;
 
         if (leftTo && leftIcon) {
@@ -55,12 +55,17 @@ export class Header extends Component {
         }
 
         let right = null;
-
         if (rightTo && rightIcon) {
             right = (
                 <Link to={rightTo}>
                     <i className={'iconfont icon-' + rightIcon}></i>
                 </Link>
+            );
+        } else if (rightClick && rightIcon) {
+            right = (
+                <div onClick={rightClick}>
+                    <i className={'iconfont icon-' + rightIcon}></i>
+                </div>
             );
         }
         return (
