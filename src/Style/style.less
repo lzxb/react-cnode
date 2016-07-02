@@ -67,6 +67,7 @@ img {
         color: #fff;
     }
 }
+
 .index-list-box {
     .zhanwei {
         display: none;
@@ -75,6 +76,7 @@ img {
         padding-bottom: 50px;
     }
 }
+
 
 /*
     首页列表
@@ -143,9 +145,11 @@ img {
 .icon-good {
     background: violet;
 }
+
 .icon-undefined {
     display: none;
 }
+
 .data-load {
     .msg {
         line-height: 70px;
@@ -520,6 +524,46 @@ img {
                 padding-left: 20px;
                 font-size: 12px;
                 color: #aaa;
+            }
+        }
+    }
+}
+
+
+/*
+    我的消息
+*/
+
+.msg-box {
+    .list {
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            a {
+                color: @style-main;
+            }
+            .name {
+                font-weight: bold;
+                line-height: 28px;
+                time {
+                    padding-left: 5px;
+                    font-size: 12px;
+                    font-weight: normal;
+                    color: #999;
+                }
+            }
+            .content {
+                padding: 5px 0;
+            }
+            .dian-true {
+                display: none;
+            }
+            .dian-false {
+                width: 8px;
+                height: 8px;
+                margin-right: 5px;
+                border-radius: 50%;
+                background: red;
             }
         }
     }

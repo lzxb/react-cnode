@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import {Tool, merged} from '../Tool';
-import {DataLoad, DataNull, Header, TipMsgSignin, Footer, GetData} from './common/index';
+import {DataLoad, DataNull, Header, TipMsgSignin, Footer, GetData, UserHeadImg} from './common/index';
 
 /**
  * 模块入口
@@ -15,11 +15,15 @@ class Main extends Component {
     render() {
         var {data, loadAnimation, loadMsg, id, tabIndex} = this.props.state;
         var { User, params} = this.props;
-        var main = <Content />
+        var main = null;
         if (!User) {
             main = <TipMsgSignin />
         } else if (!data) {
             main = <DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} />;
+        } else {
+            let {hasnot_read_messages, has_read_messages} = data;
+            Array.prototype.push.apply(hasnot_read_messages, has_read_messages);
+            main = <Content list={hasnot_read_messages} />;
         }
 
         return (
@@ -33,10 +37,38 @@ class Main extends Component {
 }
 
 class Content extends Component {
-    render () {
+    render() {
+        var list = this.props.list;
         return (
             <div className="msg-box">
-                <h2 className="tit">最新消息</h2>
+                <ul className="list">
+                    {
+                        list.map((item, index) => {
+                            var {type, author, topic, reply, has_read} = item;
+                            var content = null;
+
+                            if (type == 'at') {
+                                content = <div>在话题<Link to={`/topic/${topic.id}`}>{topic.title}</Link>中 @了你</div>;
+                            } else {
+                                content = <div>回复你了的话题<Link to={`/topic/${topic.id}`}>{topic.title}</Link></div>
+                            }
+                            return (
+                                <li data-flex="box:first" key={index}>
+                                    <div className="user">
+                                        <UserHeadImg url={author.avatar_url} />
+                                    </div>
+                                    <div>
+                                        <div className="name">{author.loginname}<time>{Tool.formatDate(reply.create_at) }</time></div>
+                                        <div data-flex="box:first">
+                                            <div data-flex="cross:center"><div className={`dian-${has_read}`}></div></div>
+                                            {content}
+                                        </div>
+                                    </div>
+                                </li>
+                            );
+                        })
+                    }
+                </ul>
             </div>
         );
     }

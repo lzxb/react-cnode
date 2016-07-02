@@ -75,8 +75,12 @@ const Main = (mySeting) => {
                     this.state.loadAnimation = false;
                     this.state.data = res.data;
                     this.props.setState(success(this.state) || this.state);
-                }, () => {
-                    this.state.loadMsg = '加载失败';
+                }, (res, xhr) => {
+                    if (xhr.status == 404) {
+                        this.state.loadMsg = '话题不存在';
+                    } else {
+                        this.state.loadMsg = '加载失败';
+                    }
                     this.state.loadAnimation = false;
                     this.props.setState(error(this.state) || this.state);
                 });
@@ -122,7 +126,7 @@ const Main = (mySeting) => {
                 var {stop} = this.props.seting;
                 if (typeof stop === 'function') {
                     return stop(this.props, this.state);
-                } 
+                }
                 return stop;
             }
             this.initState(this.props);
