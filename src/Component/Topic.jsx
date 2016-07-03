@@ -121,7 +121,7 @@ class Article extends Component {
                             <Link to={'/user/' + author.loginname} className="name">{author.loginname}</Link>
                             <time data-flex-box="1">{Tool.formatDate(create_at) }</time>
                             <div className="lou">#楼主</div>
-                            <div className="font" data-flex="main:center cross:center"><TabIcon {...this.props} /></div>
+                            <div className="font" data-flex="main:center cross:center"><TabIcon {...this.props.state.data} /></div>
                         </div>
                         <div className="qt" data-flex>
                             <div>阅读：{visit_count}</div>
