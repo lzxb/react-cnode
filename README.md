@@ -10,6 +10,7 @@
 
 ###运行
 ```
-  npm webpack -p
-  npm start
+  npm webpack -p (编译成生产环境)
+  npm start (启动服务器，访问：http://localhost:3000/)
+  
 ```
