@@ -15,6 +15,9 @@ class Main extends Component {
     constructor(props) {
         super(props);
 
+        /**
+         * 初始化组件状态
+         */
         this.state = {
             title: '',
             tab: '',
@@ -22,8 +25,15 @@ class Main extends Component {
             accesstoken: this.props.User ? this.props.User.accesstoken : ''
         };
 
+        this.postState = false;
+        /**
+         * 发表主题
+         * 
+         * @returns
+         */
         this.rightClick = () => {
             var {state} = this;
+            if (this.postState) return false;
 
             if (!state.tab) {
                 return alert('请选择发表类型');
@@ -32,7 +42,7 @@ class Main extends Component {
             } else if (state.content.length < 30) {
                 return alert('内容字数30字以上');
             }
-
+            this.postState = true;
             Tool.post('/api/v1/topics', this.state, (res) => {
                 if (res.success) {
                     this.context.router.push({
@@ -40,20 +50,38 @@ class Main extends Component {
                     });
                 } else {
                     alert('发表失败');
+                    this.postState = false;
                 }
             }, () => {
                 alert('发表失败');
+                this.postState = false;
             });
 
         }
 
+        /**
+         * 监听用户选择发表类型
+         * 
+         * @param {Object} e 事件出发的元素
+         */
         this.tabInput = (e) => {
             this.state.tab = e.target.value;
         }
 
+        /**
+         * 监听用户输入标题
+         * 
+         * @param {Object} e //事件触发的元素
+         */
         this.titleInput = (e) => {
             this.state.title = e.target.value;
         }
+
+        /**
+         * 监听用户输入内容
+         * 
+         * @param {Object} e //事件触发的元素
+         */
         this.contentInput = (e) => {
             this.state.content = e.target.value;
         }
@@ -91,7 +119,6 @@ Main.contextTypes = {
 
 class NewTopic extends Component {
     render() {
-        console.log(this.props);
         return (
             <div className="topic-create">
                 <div className="item">
