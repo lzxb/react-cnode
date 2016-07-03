@@ -3,9 +3,9 @@
 
 ### 安装
 ```
-  npm react-kelink 
+  npm install react-kelink 
   npm install (安装依赖模块)
-  npm webpack -g (没有安装webpack的需要安装)
+  npm install webpack -g (没有安装webpack的需要安装)
 ```
 
 ### 运行
