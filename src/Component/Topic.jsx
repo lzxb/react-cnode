@@ -221,6 +221,12 @@ class ReplyBox extends Component {
     constructor(props) {
         super(props);
         this.state = { btnname: '回复' }
+        
+        /**
+         * 提交回复
+         * 
+         * @returns
+         */
         this.submit = () => {
             this.state = { btnname: '提交中...' }
             var data = this.props.data;

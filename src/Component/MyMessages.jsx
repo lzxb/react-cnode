@@ -36,6 +36,12 @@ class Main extends Component {
     }
 }
 
+/**
+ * 消息内容
+ * 
+ * @class Content
+ * @extends {Component}
+ */
 class Content extends Component {
     render() {
         var list = this.props.list;

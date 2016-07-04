@@ -40,6 +40,12 @@ class Main extends Component {
 }
 
 
+/**
+ * 个人主页
+ * 
+ * @class Home
+ * @extends {Component}
+ */
 class Home extends Component {
     render() {
         var {avatar_url, loginname, score, recent_topics, recent_replies, create_at} = this.props.data;
@@ -66,6 +72,12 @@ class Home extends Component {
     }
 }
 
+/**
+ * 发布的主题和回复的主题列表
+ * 
+ * @class HomeList
+ * @extends {Component}
+ */
 class HomeList extends Component {
     render() {
         var {list, display} = this.props;

@@ -68,7 +68,7 @@ const Main = (mySeting) => {
                 var {scrollX, scrollY} = this.state;
                 if (this.get) return false; //已经加载过
                 window.scrollTo(scrollX, scrollY); //设置滚动条位置
-                if (this.getStop()) return false; //请求被拦截
+                if (this.testStop()) return false; //请求被拦截
 
                 this.get = Tool.get(this.getUrl(), this.getData(), (res) => {
                     this.state.loadMsg = '加载成功';
@@ -86,6 +86,9 @@ const Main = (mySeting) => {
                 });
             }
 
+            /**
+             * 组件卸载前执行一些操作
+             */
             this.unmount = () => {
                 if (typeof this.get != 'undefined') {
                     this.get.end();
@@ -112,6 +115,11 @@ const Main = (mySeting) => {
                 }
             }
 
+            /**
+             * 获取要发送的数据
+             * 
+             * @returns
+             */
             this.getData = () => {
                 var {data} = this.props.seting;
                 if (typeof data === 'function') {
@@ -122,7 +130,13 @@ const Main = (mySeting) => {
                     return this.props.location.query;
                 }
             }
-            this.getStop = () => {
+
+            /**
+             * 是否要拦截请求
+             * 
+             * @returns
+             */
+            this.testStop = () => {
                 var {stop} = this.props.seting;
                 if (typeof stop === 'function') {
                     return stop(this.props, this.state);

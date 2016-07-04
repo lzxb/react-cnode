@@ -3,8 +3,8 @@ import {Tool, merged} from '../Tool';
  * 存储登录的用户信息
  * 
  * @param {string} [state=JSON.parse(Tool.localItem('User'))]
- * @param {object} action
- * @returns object
+ * @param {Object} action
+ * @returns Object
  */
 const User = (state = JSON.parse(Tool.localItem('User')), action) => {
 

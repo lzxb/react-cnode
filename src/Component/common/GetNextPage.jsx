@@ -149,6 +149,11 @@ const Main = (mySeting) => {
                 }
             }
 
+            /**
+             * 获取要发送给服务器的数据
+             * 
+             * @returns
+             */
             this.getData = () => {
                 var {data} = this.props.seting;
                 if (typeof data === 'function') {
