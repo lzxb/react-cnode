@@ -4,6 +4,7 @@
 ### 安装
 ```
   git clone https://github.com/1340641314/react-cnode.git
+  cd react-cnode
   npm install (安装依赖模块)
   npm install webpack -g (没有安装webpack的需要安装)
 ```
