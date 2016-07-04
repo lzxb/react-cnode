@@ -81,7 +81,7 @@ Tool.ajax = function (mySetting) {
         str = str.replace(/\//g, '%2F');
         str = str.replace(/\?/g, '%3F');
         str = str.replace(/&/g, '%26');
-        str = str.replace(/\=/g, '&3D');
+        str = str.replace(/\=/g, '%3D');
         str = str.replace(/#/g, '%23');
         return str;
     }

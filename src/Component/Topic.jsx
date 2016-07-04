@@ -231,14 +231,15 @@ class ReplyBox extends Component {
             this.state = { btnname: '提交中...' }
             var data = this.props.data;
             if (data.reply_id) {
-                data.content = `[@${this.props.loginname}](/user/${this.props.loginname}) ${this.refs.content.value}`;
+                data.content = `
+                    [@${this.props.loginname}](/user/${this.props.loginname}) ${this.refs.content.value}`;
             } else {
                 data.content = this.refs.content.value;
             }
             if (data.content == '') {
                 return alert('回复内容不能为空！');
             }
-
+            data.content += '<br><br><a href="https://github.com/1340641314/react-cnode" target="_blank">来自疯狂的react-cnode</a>';
             Tool.post(`/api/v1//topic/${data.id}/replies`, data, (res) => {
                 this.setState({ btnname: '回复成功，刷新页面中..' });
                 this.refs.content.value = '';
@@ -269,7 +270,7 @@ class ReplyBox extends Component {
 
 ReplyBox.defaultProps = {
     display: 'block',
-    placeholder: '发表你的看法...'
+    placeholder: '回复支持Markdown语法,请注意标记代码'
 };
 ReplyBox.contextTypes = {
     router: React.PropTypes.object.isRequired
