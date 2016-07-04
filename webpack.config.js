@@ -1,9 +1,22 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var plugins = [];
+
+if (process.env.NODE_ENV === 'production') {
+    plugins.push(new webpack.DefinePlugin({ //编译成生产版本
+        'process.env': {
+            NODE_ENV: JSON.stringify('production')
+        }
+    }));
+}
+
+plugins.push(new ExtractTextPlugin('[name].css')); //css单独打包
+
+
 module.exports = {
     entry: {
-        app: './src/app', //编译的入口文件
+        app: './src/App', //编译的入口文件
     },
     output: {
         publicPath: '/build/', //编译好的文件，在服务器的路径
@@ -39,14 +52,7 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new webpack.DefinePlugin({ //编译成生产版本
-            'process.env': {
-                NODE_ENV: JSON.stringify('production')
-            }
-        }),
-        new ExtractTextPlugin('[name].css')
-    ],
+    plugins: plugins,
     resolve: {
         extensions: ['', '.js', '.jsx'], //后缀名自动补全
     }
