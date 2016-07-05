@@ -31,7 +31,7 @@
   10.前端自动化，工程化，给前端的发展起到了很大的推动作用
 ```
 ### 状态树
-![Alt text](shot/redux-state.png)
+![Alt text](shot/redux-state.jpg)
 ### 小广告
 ```
   深圳html5开发者社群：170761660
