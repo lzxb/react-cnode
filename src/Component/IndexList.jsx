@@ -53,36 +53,45 @@ class List extends Component {
             <ul className="index-list">
                 {
                     this.props.list.map((item, index) => {
-                        let {id, title, author, visit_count, reply_count, create_at, last_reply_at} = item;
-                        return (
-                            <li key={index}>
-                                <Link to={"/topic/" + id}>
-                                    <div data-flex="box:first">
-                                        <div className="font" data-flex="cross:center"><TabIcon {...item} /></div>
-                                        <h3 className="tit">{title}</h3>
-                                    </div>
-                                    <div className="bottom" data-flex="box:first">
-                                        <div className="author" data-flex="cross:center">
-                                            <UserHeadImg url={author.avatar_url} />
-                                        </div>
-                                        <div className="con" data-flex="dir:top main:center">
-                                            <p data-flex="cross:center box:last">
-                                                <span class="name">{author.loginname}</span>
-                                                <span className="count">{reply_count}/{visit_count}</span>
-                                            </p>
-                                            <p data-flex="cross:center box:last">
-                                                <time className="create">{Tool.formatDate(create_at) }</time>
-                                                <time className="re">{Tool.formatDate(last_reply_at) }</time>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </li>
-                        );
+                        return <ListItem key={item.id} {...item}/>
                     })
                 }
             </ul>
         );
+    }
+}
+
+class ListItem extends Component {
+    render() {
+        let {id, title, author, visit_count, reply_count, create_at, last_reply_at} = this.props;
+        return (
+            <li>
+                <Link to={"/topic/" + id}>
+                    <div data-flex="box:first">
+                        <div className="font" data-flex="cross:center"><TabIcon {...this.props} /></div>
+                        <h3 className="tit">{title}</h3>
+                    </div>
+                    <div className="bottom" data-flex="box:first">
+                        <div className="author" data-flex="cross:center">
+                            <UserHeadImg url={author.avatar_url} />
+                        </div>
+                        <div className="con" data-flex="dir:top main:center">
+                            <p data-flex="cross:center box:last">
+                                <span class="name">{author.loginname}</span>
+                                <span className="count">{reply_count}/{visit_count}</span>
+                            </p>
+                            <p data-flex="cross:center box:last">
+                                <time className="create">{Tool.formatDate(create_at) }</time>
+                                <time className="re">{Tool.formatDate(last_reply_at) }</time>
+                            </p>
+                        </div>
+                    </div>
+                </Link>
+            </li>
+        );
+    }
+    shouldComponentUpdate(np) {
+        return false;
     }
 }
 
