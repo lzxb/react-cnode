@@ -3,7 +3,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var plugins = [];
 
-if (process.env.NODE_ENV === 'production') {
+if (process.argv.indexOf('-p')) {
     plugins.push(new webpack.DefinePlugin({ //编译成生产版本
         'process.env': {
             NODE_ENV: JSON.stringify('production')

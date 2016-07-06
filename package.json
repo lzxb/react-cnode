@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "webpack --progress --colors --watch",
-    "dist": "NODE_ENV=production webpack --progress --colors -p"
+    "dist": "webpack --progress --colors -p"
   },
   "repository": {
     "type": "git",
