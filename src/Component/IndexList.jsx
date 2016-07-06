@@ -39,6 +39,9 @@ class Nav extends Component {
             </nav>
         );
     }
+    shouldComponentUpdate(np) {
+        return this.props.tab !== np.tab; //tab和之前的不一致，组件才需要更新，否则不更新，提升性能
+    }
 }
 
 /**
@@ -66,7 +69,7 @@ class ListItem extends Component {
         let {id, title, author, visit_count, reply_count, create_at, last_reply_at} = this.props;
         return (
             <li>
-                <Link to={"/topic/" + id}>
+                <Link to={`/topic/${id}`}>
                     <div data-flex="box:first">
                         <div className="font" data-flex="cross:center"><TabIcon {...this.props} /></div>
                         <h3 className="tit">{title}</h3>
@@ -77,7 +80,7 @@ class ListItem extends Component {
                         </div>
                         <div className="con" data-flex="dir:top main:center">
                             <p data-flex="cross:center box:last">
-                                <span class="name">{author.loginname}</span>
+                                <span className="name">{author.loginname}</span>
                                 <span className="count">{reply_count}/{visit_count}</span>
                             </p>
                             <p data-flex="cross:center box:last">

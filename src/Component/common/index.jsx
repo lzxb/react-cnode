@@ -141,6 +141,9 @@ class FooterInit extends Component {
             </footer>
         );
     }
+    shouldComponentUpdate(np) {
+        return this.props.index !== np.index; //防止组件不必要的更新
+    }
 }
 FooterInit.defaultProps = {
     index: 0
