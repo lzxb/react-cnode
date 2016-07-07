@@ -30,7 +30,7 @@ Tool.ajax = function (mySetting) {
     sData = aData.join('&');
     setting.type = setting.type.toUpperCase();
 
-
+    setting.url = window.TARGETWEBSITE + setting.url;
     var xhr = new XMLHttpRequest();
     try {
         if (setting.type == 'GET') { //get方式请求

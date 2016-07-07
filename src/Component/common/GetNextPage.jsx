@@ -9,11 +9,11 @@ import GetNextPage from 'get-next-page';
 /**
  * 模块入口方法
  * 
- * @param {Object} mySeting
+ * @param {Object} mySetting
  * @returns
  */
-const Main = (mySeting) => {
-    var seting = {
+const Main = (mySetting) => {
+    var setting = {
         id: '', //应用唯一id表示
         type: 'GET', //请求类型
         url: '', //请求地址
@@ -26,10 +26,10 @@ const Main = (mySeting) => {
     /**
      * 覆盖默认设置
      */
-    for (let key in mySeting) {
-        seting[key] = mySeting[key];
+    for (let key in mySetting) {
+        setting[key] = mySetting[key];
     }
-
+    setting.url = window.TARGETWEBSITE + setting.url;
     /**
      * 组件入口
      * 
@@ -70,7 +70,7 @@ const Main = (mySeting) => {
              * DOM初始化完成后执行回调
              */
             this.redayDOM = () => {
-                var {success, error} = this.props.seting;
+                var {success, error} = this.props.setting;
                 var {scrollX, scrollY} = this.state;
                 if (this.get) return false; //已经加载过
                 window.scrollTo(scrollX, scrollY); //设置滚动条位置
@@ -139,7 +139,7 @@ const Main = (mySeting) => {
              * @returns Object
              */
             this.getUrl = () => {
-                var {url} = this.props.seting;
+                var {url} = this.props.setting;
                 if (typeof url === 'function') {
                     return url(this.props, this.state);
                 } else if (url && typeof url === 'string') {
@@ -155,7 +155,7 @@ const Main = (mySeting) => {
              * @returns
              */
             this.getData = () => {
-                var {data} = this.props.seting;
+                var {data} = this.props.setting;
                 if (typeof data === 'function') {
                     return data(this.props, this.state);
                 } else if (data && typeof data === 'string') {
@@ -171,7 +171,7 @@ const Main = (mySeting) => {
             var {loadAnimation, loadMsg} = this.state;
             return (
                 <div>
-                    <this.props.seting.component {...this.props} state={this.state} />
+                    <this.props.setting.component {...this.props} state={this.state} />
                     <div ref="dataload"><DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} /></div>
                 </div>
             );
@@ -215,9 +215,9 @@ const Main = (mySeting) => {
         }
 
     }
-    Index.defaultProps = { seting }
+    Index.defaultProps = { setting }
 
-    return connect((state) => { return { state: state[seting.id], User: state.User } }, action(action.id))(Index); //连接redux
+    return connect((state) => { return { state: state[setting.id], User: state.User } }, action(action.id))(Index); //连接redux
 }
 
 

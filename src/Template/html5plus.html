@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>react-cnode</title>
+    <script>
+        window.APP_ENV = 'html5plus'; //设置当前程序运行环境
+        window.TARGETWEBSITE = 'https://cnodejs.org'; //目标地址
+        (function () {
+            if (window.plus) {
+                init();
+            } else {
+                document.addEventListener('plusready', init, false);
+            }
+
+            function init () {
+                var web = plus.webview.currentWebview();
+
+                var time = new Date().getTime();
+                plus.key.addEventListener('backbutton',function(){
+                    web.canBack(function (e) {
+                        if(e.canBack) {
+                           web.back(); 
+                        } else {
+                            if ((new Date().getTime() - time) < 2000) {
+                                plus.runtime.quit();
+                            } else {
+                                plus.nativeUI.toast('再按一次，退出程序');
+                            }  
+                        }
+                    });
+                });
+            }
+        })();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

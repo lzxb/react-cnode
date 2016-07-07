@@ -22,9 +22,9 @@ class Roots extends Component {
         );
     }
 }
-
+var history = window.APP_ENV == 'html5plus' ? hashHistory : browserHistory;
 const RouteConfig = (
-    <Router history={browserHistory}>
+    <Router history={history}>
         <Route path="/" component={Roots}>
             <IndexRoute component={IndexList} />
             <Route path="topic/create" component={TopicCreate} />
