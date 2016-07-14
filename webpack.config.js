@@ -6,7 +6,7 @@ var folderName = process.env.npm_lifecycle_event; //获取当前执行的命令�
 
 var plugins = [];
 
-if (process.argv.indexOf('-p')) { //生产环境
+if (process.argv.indexOf('-p') > -1) { //生产环境
     plugins.push(new webpack.DefinePlugin({ //编译成生产版本
         'process.env': {
             NODE_ENV: JSON.stringify('production')
