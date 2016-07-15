@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/1340641314/react-cnode#readme",
   "dependencies": {
-    "flex-css-layout": "^1.2.8",
+    "flex.css": "1.0.1",
     "get-next-page": "1.0.0",
     "normalize.css": "^4.1.1",
     "obj-merged": "^1.0.5",

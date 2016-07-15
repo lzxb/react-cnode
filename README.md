@@ -1,5 +1,5 @@
 # react-cnode
-基于webpack + react + react-router + redux + less + flex-css-layout + ES6 的React版cnode社区
+基于webpack + react + react-router + redux + less + flex.css + ES6 的React版cnode社区
 
 ### 下载
 ```
@@ -11,11 +11,11 @@
 
 ### 运行
 ```
-  npm run dist （发布生产版本）  
+  npm run dist （发布生产版本）
   npm run build (发布开发版本)
   npm run html5plus (发布成html5+ app打包版本)
   npm start (启动服务器，访问：http://localhost:3000/)
-  
+
 ```
 ### 功能
 ```
@@ -30,7 +30,7 @@
 ### 总结
 ```
   1.UI是自己设计的，虽然我并不会PS这些工具。
-  2.使用了flex-css-layout模块布局，最大的感觉就是在写css不需要考虑在css中如何写布局，大大的提高了我的效率。
+  2.使用了flex.css模块布局，最大的感觉就是在写css不需要考虑在css中如何写布局，大大的提高了我的效率。
   3.在移动端中，列表数据达到上百条之后，性能仍然是不容乐乎，有待于进一步的优化。
   4.ES6中的箭头函数和变量解构赋值，最大的感受在开发效率上。提高很多。
   5.使用高阶组件封装获取数据的流程，让页面组件专注于页面渲染，避免了每个页面都需要写一次获取数据的流程，提高开发效率
