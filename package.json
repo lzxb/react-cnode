@@ -4,9 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "webpack --progress --colors --watch",
-    "dist": "webpack --progress --colors -p",
-    "html5plus": "webpack --progress --colors -p"
+    "dev": "webpack-dev-server --progress --colors --watch --config server.js",
+    "dist": "webpack --progress --colors -p"
   },
   "repository": {
     "type": "git",

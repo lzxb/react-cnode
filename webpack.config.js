@@ -16,20 +16,11 @@ if (process.argv.indexOf('-p') > -1) { //生产环境
 
 plugins.push(new ExtractTextPlugin('[name].css')); //css单独打包
 
-if (folderName == 'html5plus') {
 plugins.push(new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
-    filename: 'index.html', //生成的html存放路径，相对于 path
-    template: './src/template/html5plus.html', //html模板路径
+    filename: '../index.html', //生成的html存放路径，相对于 path
+    template: './src/template/index.html', //html模板路径
     hash: true,    //为静态资源生成hash值
 }));
-}
-else {
-    plugins.push(new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
-        filename: '../index.html', //生成的html存放路径，相对于 path
-        template: './src/template/web.html', //html模板路径
-        hash: true,    //为静态资源生成hash值
-    }));
-}
 
 module.exports = {
     entry: {

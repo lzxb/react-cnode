@@ -29,7 +29,7 @@ const Main = (mySetting) => {
     for (let key in mySetting) {
         setting[key] = mySetting[key];
     }
-    setting.url = window.TARGETWEBSITE + setting.url;
+    
     /**
      * 组件入口
      * 
