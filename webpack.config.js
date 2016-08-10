@@ -14,7 +14,6 @@ if (process.argv.indexOf('-p') > -1) { //生产环境
     }));
     publicPath = '/react-cnode/dist/';
 }
-
 plugins.push(new ExtractTextPlugin('[name].css')); //css单独打包
 
 plugins.push(new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML

@@ -2,10 +2,13 @@ import React, {Component, PropTypes} from 'react';
 import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../../Action/Index';
-import {Tool, merged} from '../../Tool';
+import {Tool, merged, config} from '../../Tool';
 import {DataLoad, DataNull, Header, TipMsgSignin, Footer, UserHeadImg} from './index';
 
 import GetNextPage from 'get-next-page';
+
+var origin = process.env.NODE_ENV !== 'production' ? '' : config.origin;
+
 /**
  * 模块入口方法
  * 
@@ -75,7 +78,7 @@ const Main = (mySetting) => {
                 if (this.get) return false; //已经加载过
                 window.scrollTo(scrollX, scrollY); //设置滚动条位置
                 this.get = new GetNextPage(this.refs.dataload, {
-                    url: this.getUrl(),
+                    url: origin + this.getUrl(),
                     data: this.getData(),
                     start: this.start,
                     load: this.load,

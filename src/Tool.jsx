@@ -177,4 +177,4 @@ Tool.removeLocalItem = function (key) {
     return localStorage.removeItem();
 }
 
-export {Tool, merged}
+export {Tool, merged, config}
