@@ -1,0 +1,1 @@
+export const origin = 'https://cnodejs.org';

@@ -22,7 +22,7 @@ class Roots extends Component {
         );
     }
 }
-var history = window.APP_ENV == 'html5plus' ? hashHistory : browserHistory;
+var history = process.env.NODE_ENV !== 'production' ? browserHistory : hashHistory;
 const RouteConfig = (
     <Router history={history}>
         <Route path="/" component={Roots}>

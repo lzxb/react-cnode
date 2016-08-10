@@ -1,7 +1,6 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
-var folderName = process.env.npm_lifecycle_event; //获取当前执行的命令，编译到对应的目录
 
 
 var plugins = [];
@@ -27,8 +26,8 @@ module.exports = {
         app: './src/App', //编译的入口文件
     },
     output: {
-        publicPath: folderName == 'html5plus' ? '' : `/${folderName}/`, //编译好的文件，在服务器的路径
-        path: __dirname + `/${folderName}`, //编译到当前目录
+        publicPath: '/dist/', //编译好的文件，在服务器的路径
+        path: __dirname + '/dist/', //编译到当前目录
         filename: '[name].js' //编译后的文件名字
     },
     module: {

@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "webpack-dev-server --progress --colors --watch --config server.js",
+    "dev": "node server.js",
     "dist": "webpack --progress --colors -p"
   },
   "repository": {

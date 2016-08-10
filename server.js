@@ -11,7 +11,7 @@ var proxy = [{
 
 //启动服务
 var server = new WebpackDevServer(webpack(config), {
-    publicPath: './',
+    publicPath: config.output.publicPath,
     proxy:proxy
 });
 
