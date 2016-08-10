@@ -1,6 +1,9 @@
 # react-cnode
 基于webpack + react + react-router + redux + less + flex.css + ES6 的React版cnode社区
 
+### demo
+ [![demo](https://github.com/1340641314/react-cnode/raw/master/shot/QR-code.png)](http://1340641314.github.io/react-cnode/)
+
 ### 下载
 ```
   git clone https://github.com/1340641314/react-cnode.git
@@ -39,7 +42,7 @@
   10.前端自动化，工程化，给前端的发展起到了很大的推动作用
 ```
 ### 状态树
-![Alt text](shot/redux-state.jpg)
+![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/redux-state.jpg)
 ### 小广告
 ```
   深圳html5开发者社群：170761660
@@ -47,25 +50,25 @@
 ```
 ### 截图
 
-![Alt text](shot/1.png)
+![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/1.png)
 
-![Alt text](shot/2.png)
+![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/2.png)
 
-![Alt text](shot/3.png)
+![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/3.png)
 
-![Alt text](shot/4.png)
+![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/4.png)
 
-![Alt text](shot/5.png)
+![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/5.png)
 
-![Alt text](shot/6.png)
+![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/6.png)
 
-![Alt text](shot/7.png)
+![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/7.png)
 
-![Alt text](shot/8.png)
+![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/8.png)
 
-![Alt text](shot/9.png)
+![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/9.png)
 
-![Alt text](shot/10.png)
+![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/10.png)
 
-![Alt text](shot/11.png)
+![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/11.png)
 
