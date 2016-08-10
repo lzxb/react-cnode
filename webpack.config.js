@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
 
+var publicPath = '/dist/';
 
 var plugins = [];
 
@@ -11,6 +12,7 @@ if (process.argv.indexOf('-p') > -1) { //生产环境
             NODE_ENV: JSON.stringify('production')
         }
     }));
+    publicPath = '/react-cnode/dist/';
 }
 
 plugins.push(new ExtractTextPlugin('[name].css')); //css单独打包
@@ -26,7 +28,7 @@ module.exports = {
         app: './src/App', //编译的入口文件
     },
     output: {
-        publicPath: '/dist/', //编译好的文件，在服务器的路径
+        publicPath, //编译好的文件，在服务器的路径
         path: __dirname + '/dist/', //编译到当前目录
         filename: '[name].js' //编译后的文件名字
     },
@@ -59,7 +61,7 @@ module.exports = {
             }
         ]
     },
-    plugins: plugins,
+    plugins,
     resolve: {
         extensions: ['', '.js', '.jsx'], //后缀名自动补全
     }
