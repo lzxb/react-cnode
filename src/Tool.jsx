@@ -135,7 +135,7 @@ Tool.formatDate = function (str) {
     if (time < 0) {
         return '';
     } else if (time / 1000 < 60) {
-        return parseInt((time / 1000)) + '秒前';
+        return '刚刚';
     } else if ((time / 60000) < 60) {
         return parseInt((time / 60000)) + '分钟前';
     } else if ((time / 3600000) < 24) {
