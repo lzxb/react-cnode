@@ -231,8 +231,7 @@ class ReplyBox extends Component {
             this.state = { btnname: '提交中...' }
             var data = this.props.data;
             if (data.reply_id) {
-                data.content = `
-                    [@${this.props.loginname}](/user/${this.props.loginname}) ${this.refs.content.value}`;
+                data.content = `[@${this.props.loginname}](/user/${this.props.loginname}) ${this.refs.content.value}`;
             } else {
                 data.content = this.refs.content.value;
             }
