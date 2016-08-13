@@ -50,25 +50,25 @@
 ```
 ### 截图
 
-![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/1.png)
+![截图](https://github.com/1340641314/react-cnode/raw/master/shot/1.png)
 
-![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/2.png)
+![截图](https://github.com/1340641314/react-cnode/raw/master/shot/2.png)
 
-![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/3.png)
+![截图](https://github.com/1340641314/react-cnode/raw/master/shot/3.png)
 
-![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/4.png)
+![截图](https://github.com/1340641314/react-cnode/raw/master/shot/4.png)
 
-![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/5.png)
+![截图](https://github.com/1340641314/react-cnode/raw/master/shot/5.png)
 
-![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/6.png)
+![截图](https://github.com/1340641314/react-cnode/raw/master/shot/6.png)
 
-![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/7.png)
+![截图](https://github.com/1340641314/react-cnode/raw/master/shot/7.png)
 
-![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/8.png)
+![截图](https://github.com/1340641314/react-cnode/raw/master/shot/8.png)
 
-![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/9.png)
+![截图](https://github.com/1340641314/react-cnode/raw/master/shot/9.png)
 
-![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/10.png)
+![截图](https://github.com/1340641314/react-cnode/raw/master/shot/10.png)
 
-![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/11.png)
+![截图](https://github.com/1340641314/react-cnode/raw/master/shot/11.png)
 
