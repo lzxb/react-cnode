@@ -1,7 +1,7 @@
 import merged from 'obj-merged';
 import * as config from './Config/Config';
 
-var origin = process.env.NODE_ENV !== 'production' ? '' : config.origin;
+const {target} = config;
 const Tool = {};
 /**
  * 发送ajax请求和服务器交互
@@ -97,7 +97,7 @@ Tool.ajax = function (mySetting) {
  */
 Tool.post = function (pathname, data, success, error) {
     var setting = {
-        url: origin + pathname, //默认ajax请求地址
+        url: target + pathname, //默认ajax请求地址
         type: 'POST', //请求的方式
         data: data, //发给服务器的数据
         success: success || function () { }, //请求成功执行方法
@@ -114,7 +114,7 @@ Tool.post = function (pathname, data, success, error) {
  */
 Tool.get = function (pathname, data, success, error) {
     var setting = {
-        url: origin + pathname, //默认ajax请求地址
+        url: target + pathname, //默认ajax请求地址
         type: 'GET', //请求的方式
         data: data, //发给服务器的数据
         success: success || function () { }, //请求成功执行方法

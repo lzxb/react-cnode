@@ -1,1 +1,1 @@
-export const origin = 'https://cnodejs.org';
+export const target = process.env.NODE_ENV !== 'production' ? '' : 'https://cnodejs.org';

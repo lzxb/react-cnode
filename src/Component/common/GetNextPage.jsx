@@ -7,7 +7,7 @@ import {DataLoad, DataNull, Header, TipMsgSignin, Footer, UserHeadImg} from './i
 
 import GetNextPage from 'get-next-page';
 
-var origin = process.env.NODE_ENV !== 'production' ? '' : config.origin;
+const {target} = config;
 
 /**
  * 模块入口方法
@@ -32,7 +32,7 @@ const Main = (mySetting) => {
     for (let key in mySetting) {
         setting[key] = mySetting[key];
     }
-    
+
     /**
      * 组件入口
      * 
@@ -58,7 +58,7 @@ const Main = (mySetting) => {
                 } else {
                     this.action = true;
                 }
-                
+
                 if (typeof state.path[this.path] === 'object' && state.path[this.path].path === this.path && this.action) {
                     this.state = state.path[this.path];
                 } else {
@@ -78,7 +78,7 @@ const Main = (mySetting) => {
                 if (this.get) return false; //已经加载过
                 window.scrollTo(scrollX, scrollY); //设置滚动条位置
                 this.get = new GetNextPage(this.refs.dataload, {
-                    url: origin + this.getUrl(),
+                    url: target + this.getUrl(),
                     data: this.getData(),
                     start: this.start,
                     load: this.load,
