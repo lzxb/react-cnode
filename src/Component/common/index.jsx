@@ -9,7 +9,7 @@ import GetNextPage from './GetNextPage';
 export {GetData, GetNextPage}
 /**
  * (加载动画)
- * 
+ *
  * @class DataLoad
  * @extends {Component}
  */
@@ -30,7 +30,7 @@ DataLoad.defaultProps = {
 
 /**
  * 公共头部
- * 
+ *
  * @export
  * @class Header
  * @extends {Component}
@@ -88,7 +88,7 @@ Header.contextTypes = {
 
 /**
  * 暂无记录
- * 
+ *
  * @export
  * @class DataNull
  * @extends {Component}
@@ -103,12 +103,30 @@ export class DataNull extends Component {
 
 /**
  * 底部导航菜单
- * 
+ *
  * @export
  * @class Footer
  * @extends {Component}
  */
 class FooterInit extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            messageCount: 0
+        };
+
+        this.getMessageCount = () => {
+            var accesstoken = this.props.User ? this.props.User.accesstoken : '';
+            if (accesstoken) {
+                Tool.get('/api/v1/message/count', { accesstoken }, (res) => {
+                    this.setState({
+                        messageCount: res.data
+                    });
+                });
+            }
+        }
+    }
     render() {
         var myUrl = this.props.User && this.props.User.loginname ? '/user/' + this.props.User.loginname : '/signin';
         var arr = [];
@@ -129,7 +147,7 @@ class FooterInit extends Component {
                     </li>
                     <li className={arr[2]}>
                         <Link to="/my/messages">
-                            <i className="iconfont icon-xiaoxi"></i>消息
+                            <i className="iconfont icon-xiaoxi"></i>消息{this.state.messageCount > 0 ? <em>{this.state.messageCount}</em> : ''}
                         </Link>
                     </li>
                     <li className={arr[3]}>
@@ -141,8 +159,14 @@ class FooterInit extends Component {
             </footer>
         );
     }
+    componentDidMount() {
+        this.getMessageCount();
+    }
     shouldComponentUpdate(np) {
         return this.props.index !== np.index; //防止组件不必要的更新
+    }
+    componentDidUpdate() {
+        this.getMessageCount();
     }
 }
 FooterInit.defaultProps = {
@@ -155,7 +179,7 @@ var Footer = connect((state) => { return { User: state.User }; }, action('User')
 export {Footer}
 /**
  * 提示登录
- * 
+ *
  * @export
  * @class TipMsgSignin
  * @extends {Component}
@@ -172,7 +196,7 @@ export class TipMsgSignin extends Component {
 
 /**
  * 用户头像
- * 
+ *
  * @export
  * @class UserHeadImg
  * @extends {Component}
@@ -185,7 +209,7 @@ export class UserHeadImg extends Component {
 
 /**
  * 生成主题类型小图标
- * 
+ *
  * @export
  * @class tabIcon
  * @extends {Component}
