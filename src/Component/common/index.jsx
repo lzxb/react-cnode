@@ -162,8 +162,8 @@ class FooterInit extends Component {
     componentDidMount() {
         this.getMessageCount();
     }
-    shouldComponentUpdate(np) {
-        return this.props.index !== np.index; //防止组件不必要的更新
+    shouldComponentUpdate(np, ns) {
+        return this.props.index !== np.index || this.state.messageCount !== ns.messageCount; //防止组件不必要的更新
     }
     componentDidUpdate() {
         this.getMessageCount();
