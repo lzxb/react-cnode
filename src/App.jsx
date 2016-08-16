@@ -9,6 +9,7 @@ import 'normalize.css'; //重置浏览器默认样式
 import 'flex.css'; //flex布局
 import './Style/style.less'; //加载公共样式
 import './Iconfont/iconfont.css'; //字体图标
+import 'github-markdown-css'; //markdown css
 
 store.subscribe(function () {
     // console.log(store.getState());

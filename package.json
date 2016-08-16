@@ -20,6 +20,7 @@
   "dependencies": {
     "flex.css": "1.0.1",
     "get-next-page": "1.0.0",
+    "github-markdown-css": "^2.4.0",
     "normalize.css": "^4.1.1",
     "obj-merged": "^1.0.5",
     "react": "^15.0.1",

@@ -130,7 +130,7 @@ class Article extends Component {
                     </div>
                 </div>
                 <h2 className="tit2">{title}</h2>
-                <div className="content" dangerouslySetInnerHTML={createMarkup() } />
+                <div className="content markdown-body" dangerouslySetInnerHTML={createMarkup() } />
                 <h3 className="tit3">共<em>{replies.length}</em>条回复</h3>
                 <ReList reLoadData={this.props.reLoadData} id={id} list={replies} clickZan={this.props.clickZan} showReplyBox={this.props.showReplyBox}  User={this.props.User} />
                 {bottom}
@@ -190,7 +190,7 @@ class ReList extends Component {
                                         <time data-flex-box="1">{Tool.formatDate(create_at) }</time>
                                         <div className="lou">#{++index}</div>
                                     </div>
-                                    <div className="content" dangerouslySetInnerHTML={createMarkup() }></div>
+                                    <div className="content markdown-body" dangerouslySetInnerHTML={createMarkup() }></div>
                                     <div className="bottom" data-flex="main:right">
                                         <div className={`font font-${upState}`} onClick={() => { this.props.clickZan(id, index, author.loginname); } }>
                                             <i className="iconfont icon-dianzan "></i>
