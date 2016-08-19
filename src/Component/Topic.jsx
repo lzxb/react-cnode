@@ -238,7 +238,7 @@ class ReplyBox extends Component {
             if (data.content == '') {
                 return alert('回复内容不能为空！');
             }
-            data.content += '<br><br>来自<a href="https://1340641314.github.io/react-cnode/" target="_blank">react-cnode手机版</a>';
+            data.content += '\n\r<br><br>来自<a href="https://1340641314.github.io/react-cnode/" target="_blank">react-cnode手机版</a>';
             Tool.post(`/api/v1//topic/${data.id}/replies`, data, (res) => {
                 this.setState({ btnname: '回复成功，刷新页面中..' });
                 this.refs.content.value = '';
