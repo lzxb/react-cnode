@@ -12,7 +12,7 @@
   npm install webpack -g (没有安装webpack的需要安装)
 ```
 
-### 运行（nodejs 6.4+）
+### 运行（nodejs 6.0+）
 ```
   npm run dev (开发版本访问：http://localhost:3000/)
   npm run dist （发布生产版本）
