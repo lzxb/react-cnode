@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/1340641314/react-cnode.git"
+    "url": "git+https://github.com/lzxb/react-cnode.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/1340641314/react-cnode/issues"
+    "url": "https://github.com/lzxb/react-cnode/issues"
   },
-  "homepage": "https://github.com/1340641314/react-cnode#readme",
+  "homepage": "https://github.com/lzxb/react-cnode#readme",
   "dependencies": {
     "flex.css": "1.0.1",
     "get-next-page": "1.0.0",

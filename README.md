@@ -2,11 +2,11 @@
 基于webpack + react + react-router + redux + less + flex.css + ES6 的React版cnode社区
 
 ### demo
- [![demo](https://github.com/1340641314/react-cnode/raw/master/shot/QR-code.png)](http://1340641314.github.io/react-cnode/)
+ [![demo](https://github.com/lzxb/react-cnode/raw/master/shot/QR-code.png)](http://lzxb.github.io/react-cnode/)
 
 ### 下载
 ```
-  git clone https://github.com/1340641314/react-cnode.git
+  git clone https://github.com/lzxb/react-cnode.git
   cd react-cnode
   npm install (安装依赖模块)
   npm install webpack -g (没有安装webpack的需要安装)
@@ -42,7 +42,7 @@
   10.前端自动化，工程化，给前端的发展起到了很大的推动作用
 ```
 ### 状态树
-![Alt text](https://github.com/1340641314/react-cnode/raw/master/shot/redux-state.jpg)
+![Alt text](https://github.com/lzxb/react-cnode/raw/master/shot/redux-state.jpg)
 ### 小广告
 ```
   深圳html5开发者社群：170761660
@@ -50,25 +50,25 @@
 ```
 ### 截图
 
-![截图](https://github.com/1340641314/react-cnode/raw/master/shot/1.png)
+![截图](https://github.com/lzxb/react-cnode/raw/master/shot/1.png)
 
-![截图](https://github.com/1340641314/react-cnode/raw/master/shot/2.png)
+![截图](https://github.com/lzxb/react-cnode/raw/master/shot/2.png)
 
-![截图](https://github.com/1340641314/react-cnode/raw/master/shot/3.png)
+![截图](https://github.com/lzxb/react-cnode/raw/master/shot/3.png)
 
-![截图](https://github.com/1340641314/react-cnode/raw/master/shot/4.png)
+![截图](https://github.com/lzxb/react-cnode/raw/master/shot/4.png)
 
-![截图](https://github.com/1340641314/react-cnode/raw/master/shot/5.png)
+![截图](https://github.com/lzxb/react-cnode/raw/master/shot/5.png)
 
-![截图](https://github.com/1340641314/react-cnode/raw/master/shot/6.png)
+![截图](https://github.com/lzxb/react-cnode/raw/master/shot/6.png)
 
-![截图](https://github.com/1340641314/react-cnode/raw/master/shot/7.png)
+![截图](https://github.com/lzxb/react-cnode/raw/master/shot/7.png)
 
-![截图](https://github.com/1340641314/react-cnode/raw/master/shot/8.png)
+![截图](https://github.com/lzxb/react-cnode/raw/master/shot/8.png)
 
-![截图](https://github.com/1340641314/react-cnode/raw/master/shot/9.png)
+![截图](https://github.com/lzxb/react-cnode/raw/master/shot/9.png)
 
-![截图](https://github.com/1340641314/react-cnode/raw/master/shot/10.png)
+![截图](https://github.com/lzxb/react-cnode/raw/master/shot/10.png)
 
-![截图](https://github.com/1340641314/react-cnode/raw/master/shot/11.png)
+![截图](https://github.com/lzxb/react-cnode/raw/master/shot/11.png)
 
