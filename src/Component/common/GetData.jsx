@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
-import { connect } from 'react-redux';
+import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+import {connect} from 'react-redux';
 import action from '../../Action/Index';
 import {Tool, merged} from '../../Tool';
 import {DataLoad, Footer, UserHeadImg, TabIcon} from './index';

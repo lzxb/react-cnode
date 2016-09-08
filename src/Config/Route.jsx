@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
+import {Router, Route, IndexRoute, browserHistory, hashHistory} from 'react-router';
 
 import IndexList from '../Component/IndexList'; //首页组件
 import Topic from '../Component/Topic'; //主题详情
