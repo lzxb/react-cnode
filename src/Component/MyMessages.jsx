@@ -14,7 +14,7 @@ import {DataLoad, DataNull, Header, TipMsgSignin, Footer, GetData, UserHeadImg} 
 class Main extends Component {
     render() {
         var {data, loadAnimation, loadMsg, id, tabIndex} = this.props.state;
-        var { User, params} = this.props;
+        var {User, params} = this.props;
         var main = null;
         if (!User) {
             main = <TipMsgSignin />
