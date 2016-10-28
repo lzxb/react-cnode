@@ -6,7 +6,7 @@ export default (_ID) => {
         'setState' //设置状态
     ];
 
-    for (let i = 0; i < arr.length; i++) { 
+    for (let i = 0; i < arr.length; i++) {
         action[arr[i]] = (target) => {
             return { _ID: _ID, target: target, type: arr[i] };
         }

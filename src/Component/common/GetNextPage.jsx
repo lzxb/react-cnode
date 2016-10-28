@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import { connect } from 'react-redux';
 import action from '../../Action/Index';
-import {Tool, merged, config} from '../../Tool';
-import {DataLoad, DataNull, Header, TipMsgSignin, Footer, UserHeadImg} from './index';
+import { Tool, merged, config } from '../../Tool';
+import { DataLoad, DataNull, Header, TipMsgSignin, Footer, UserHeadImg } from './index';
 
 import GetNextPage from 'get-next-page';
 

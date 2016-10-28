@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import { connect } from 'react-redux';
 import action from '../Action/Index';
-import {Tool, merged} from '../Tool';
-import {DataLoad, Footer, UserHeadImg, TabIcon, GetNextPage} from './common/Index';
+import { Tool, merged } from '../Tool';
+import { DataLoad, Footer, UserHeadImg, TabIcon, GetNextPage } from './common/Index';
 
 
 /**
@@ -56,7 +56,7 @@ class List extends Component {
             <ul className="index-list">
                 {
                     this.props.list.map((item, index) => {
-                        return <ListItem key={item.id} {...item}/>
+                        return <ListItem key={item.id} {...item} />
                     })
                 }
             </ul>
@@ -84,8 +84,8 @@ class ListItem extends Component {
                                 <span className="count">{reply_count}/{visit_count}</span>
                             </p>
                             <p data-flex="cross:center box:last">
-                                <time className="create">{Tool.formatDate(create_at) }</time>
-                                <time className="re">{Tool.formatDate(last_reply_at) }</time>
+                                <time className="create">{Tool.formatDate(create_at)}</time>
+                                <time className="re">{Tool.formatDate(last_reply_at)}</time>
                             </p>
                         </div>
                     </div>

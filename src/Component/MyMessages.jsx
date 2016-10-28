@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import { connect } from 'react-redux';
 import action from '../Action/Index';
-import {Tool, merged} from '../Tool';
-import {DataLoad, DataNull, Header, TipMsgSignin, Footer, GetData, UserHeadImg} from './common/Index';
+import { Tool, merged } from '../Tool';
+import { DataLoad, DataNull, Header, TipMsgSignin, Footer, GetData, UserHeadImg } from './common/Index';
 
 /**
  * 模块入口
@@ -64,7 +64,7 @@ class Content extends Component {
                                         <UserHeadImg url={author.avatar_url} />
                                     </Link>
                                     <div>
-                                        <div className="name">{author.loginname}<time>{Tool.formatDate(reply.create_at) }</time></div>
+                                        <div className="name">{author.loginname}<time>{Tool.formatDate(reply.create_at)}</time></div>
                                         <div data-flex="box:first">
                                             <div data-flex="cross:center"><div className={`dian-${has_read}`}></div></div>
                                             {content}

@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import { connect } from 'react-redux';
 import action from '../Action/Index';
-import {Tool, merged} from '../Tool';
-import {DataLoad, DataNull, Header, TipMsgSignin, Footer, UserHeadImg, GetData} from './common/Index';
+import { Tool, merged } from '../Tool';
+import { DataLoad, DataNull, Header, TipMsgSignin, Footer, UserHeadImg, GetData } from './common/Index';
 
 /**
  * 模块入口
@@ -31,7 +31,7 @@ class Main extends Component {
         var rightIcon = params.loginname == User.loginname ? 'tuichu' : null;
         return (
             <div>
-                <Header title={title} leftIcon={leftIcon} rightIcon={rightIcon} rightTo="/signout"/>
+                <Header title={title} leftIcon={leftIcon} rightIcon={rightIcon} rightTo="/signout" />
                 {main}
                 {footer}
             </div>
@@ -59,7 +59,7 @@ class Home extends Component {
                 <div className="headimg" data-flex="dir:top main:center cross:center">
                     <UserHeadImg url={avatar_url} />
                     <div className="name">{loginname}</div>
-                    <div className="score">积分：{score}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注册于：{Tool.formatDate(create_at) }</div>
+                    <div className="score">积分：{score}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注册于：{Tool.formatDate(create_at)}</div>
                 </div>
                 <ul className="tab-nav" data-flex="box:mean">
                     <li onClick={() => { this.props.tab(0) } } className={arrOn[0]}>主题</li>
@@ -90,7 +90,7 @@ class HomeList extends Component {
                             <li key={index}>
                                 <Link data-flex="box:last" to={`/topic/${id}`}>
                                     <div className="tit">{title}</div>
-                                    <time className>{Tool.formatDate(last_reply_at) }</time>
+                                    <time className>{Tool.formatDate(last_reply_at)}</time>
                                 </Link>
                             </li>
                         );

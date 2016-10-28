@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import { connect } from 'react-redux';
 import action from '../Action/Index';
-import {Tool, merged} from '../Tool';
-import {DataLoad, DataNull, Header, TipMsgSignin, Footer} from './common/Index';
+import { Tool, merged } from '../Tool';
+import { DataLoad, DataNull, Header, TipMsgSignin, Footer } from './common/Index';
 
 /**
  * 模块入口
@@ -14,9 +14,9 @@ import {DataLoad, DataNull, Header, TipMsgSignin, Footer} from './common/Index';
 class Main extends Component {
     constructor(props) {
         super(props);
-        this.signout= () => {
+        this.signout = () => {
             this.props.signin();
-            this.context.router.replace({pathname: '/'});
+            this.context.router.replace({ pathname: '/' });
         }
 
     }

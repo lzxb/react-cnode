@@ -1,12 +1,12 @@
-import React, {Component, PropTypes} from 'react';
-import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import { connect } from 'react-redux';
 import action from '../../Action/Index';
-import {Tool, merged} from '../../Tool';
+import { Tool, merged } from '../../Tool';
 import GetData from './GetData';
 import GetNextPage from './GetNextPage';
 
-export {GetData, GetNextPage}
+export { GetData, GetNextPage }
 /**
  * (加载动画)
  *
@@ -176,7 +176,7 @@ FooterInit.defaultProps = {
 
 var Footer = connect((state) => { return { User: state.User }; }, action('User'))(FooterInit);
 
-export {Footer}
+export { Footer }
 /**
  * 提示登录
  *
@@ -203,7 +203,7 @@ export class TipMsgSignin extends Component {
  */
 export class UserHeadImg extends Component {
     render() {
-        return (<div className="user-headimg"  style={{ backgroundImage: 'url(' + this.props.url + ')' }}></div>)
+        return (<div className="user-headimg" style={{ backgroundImage: 'url(' + this.props.url + ')' }}></div>)
     }
 }
 

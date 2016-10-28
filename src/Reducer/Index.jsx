@@ -1,4 +1,4 @@
-import {Tool, merged} from '../Tool';
+import { Tool, merged } from '../Tool';
 /**
  * 存储登录的用户信息
  * 
@@ -59,4 +59,4 @@ const IndexList = DB('IndexList', { page: 1, nextBtn: true, limit: 10, mdrender:
 const Topic = DB('Topic'); //主题详情
 const MyMessages = DB('MyMessages'); //消息
 const UserView = DB('UserView', { tabIndex: 0 }); //用户详情
-export default { IndexList, Topic, MyMessages, UserView, User}
+export default { IndexList, Topic, MyMessages, UserView, User }

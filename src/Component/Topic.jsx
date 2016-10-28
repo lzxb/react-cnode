@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import { connect } from 'react-redux';
 import action from '../Action/Index';
-import {Tool, merged} from '../Tool';
-import {DataLoad, DataNull, Header, TipMsgSignin, UserHeadImg, TabIcon, GetData} from './common/Index';
+import { Tool, merged } from '../Tool';
+import { DataLoad, DataNull, Header, TipMsgSignin, UserHeadImg, TabIcon, GetData } from './common/Index';
 
 /**
  * 模块入口
@@ -119,7 +119,7 @@ class Article extends Component {
                     <div className="data" data-flex="dir:top" data-flex-box="1">
                         <div data-flex="main:justify">
                             <Link to={'/user/' + author.loginname} className="name">{author.loginname}</Link>
-                            <time data-flex-box="1">{Tool.formatDate(create_at) }</time>
+                            <time data-flex-box="1">{Tool.formatDate(create_at)}</time>
                             <div className="lou">#楼主</div>
                             <div className="font" data-flex="main:center cross:center"><TabIcon {...this.props.state.data} /></div>
                         </div>
@@ -130,9 +130,9 @@ class Article extends Component {
                     </div>
                 </div>
                 <h2 className="tit2">{title}</h2>
-                <div className="content markdown-body" dangerouslySetInnerHTML={createMarkup() } />
+                <div className="content markdown-body" dangerouslySetInnerHTML={createMarkup()} />
                 <h3 className="tit3">共<em>{replies.length}</em>条回复</h3>
-                <ReList reLoadData={this.props.reLoadData} id={id} list={replies} clickZan={this.props.clickZan} showReplyBox={this.props.showReplyBox}  User={this.props.User} />
+                <ReList reLoadData={this.props.reLoadData} id={id} list={replies} clickZan={this.props.clickZan} showReplyBox={this.props.showReplyBox} User={this.props.User} />
                 {bottom}
             </div>
         );
@@ -187,10 +187,10 @@ class ReList extends Component {
                                 <div className="main" data-flex-box="1">
                                     <div data-flex="main:justify">
                                         <Link to={'/user/' + author.loginname} className="name">{author.loginname}</Link>
-                                        <time data-flex-box="1">{Tool.formatDate(create_at) }</time>
+                                        <time data-flex-box="1">{Tool.formatDate(create_at)}</time>
                                         <div className="lou">#{++index}</div>
                                     </div>
-                                    <div className="content markdown-body" dangerouslySetInnerHTML={createMarkup() }></div>
+                                    <div className="content markdown-body" dangerouslySetInnerHTML={createMarkup()}></div>
                                     <div className="bottom" data-flex="main:right">
                                         <div className={`font font-${upState}`} onClick={() => { this.props.clickZan(id, index, author.loginname); } }>
                                             <i className="iconfont icon-dianzan "></i>
@@ -200,7 +200,7 @@ class ReList extends Component {
                                             <i className="iconfont icon-huifu"></i>
                                         </div>
                                     </div>
-                                    <ReplyBox placeholder={`@${author.loginname}`}  reLoadData={this.props.reLoadData} display={display} loginname={author.loginname} data={{ accesstoken, id: this.props.id, reply_id: id }} />
+                                    <ReplyBox placeholder={`@${author.loginname}`} reLoadData={this.props.reLoadData} display={display} loginname={author.loginname} data={{ accesstoken, id: this.props.id, reply_id: id }} />
                                 </div>
                             </li>
                         );
@@ -221,7 +221,7 @@ class ReplyBox extends Component {
     constructor(props) {
         super(props);
         this.state = { btnname: '回复' }
-        
+
         /**
          * 提交回复
          * 
