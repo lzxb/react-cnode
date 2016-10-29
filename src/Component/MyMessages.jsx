@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import { Tool, merged } from '../Tool';
-import { DataLoad, DataNull, Header, TipMsgSignin, Footer, GetData, UserHeadImg } from './common/Index';
+import { DataLoad, DataNull, Header, TipMsgSignin, Footer, GetData, UserHeadImg } from './common/index';
 
 /**
  * 模块入口

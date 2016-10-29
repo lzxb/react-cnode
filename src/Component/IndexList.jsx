@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import { Tool, merged } from '../Tool';
-import { DataLoad, Footer, UserHeadImg, TabIcon, GetNextPage } from './common/Index';
+import { DataLoad, Footer, UserHeadImg, TabIcon, GetNextPage } from './common/index';
 
 
 /**
