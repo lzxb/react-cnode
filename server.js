@@ -14,7 +14,7 @@ var server = new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
     proxy: proxy,
     stats: {
-        colors: require('supports-color')
+        colors: true
     },
 });
 
