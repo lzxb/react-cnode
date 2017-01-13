@@ -10,7 +10,7 @@ var plugins = [];
 if (process.argv.indexOf('-p') > -1) { //生产环境
     plugins.push(new webpack.DefinePlugin({ //编译成生产版本
         'process.env': {
-            NODE_ENV: JSON.stringify('"production"')
+            NODE_ENV: JSON.stringify('production')
         }
     }));
     publicPath = '/react-cnode/dist/';
