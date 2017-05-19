@@ -1,9 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import React, {Component} from 'react';
+// import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import {NavLink as Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import { Tool, merged } from '../Tool';
 import { DataLoad, Footer, UserHeadImg, TabIcon, GetNextPage } from './common/index';
+import queryString from 'query-string';
 
 
 /**
@@ -97,7 +99,6 @@ class ListItem extends Component {
         return false;
     }
 }
-
 /**
  * (导出组件)
  * 
@@ -111,7 +112,9 @@ class Main extends Component {
     }
     render() {
         var {data, loadAnimation, loadMsg} = this.props.state;
-        var tab = this.props.location.query.tab || 'all';
+        debugger;
+        var tab = queryString.parse(this.props.location.search).tab || 'all';
+        debugger;
         return (
             <div className="index-list-box">
                 <Nav tab={tab} />
@@ -132,7 +135,7 @@ export default GetNextPage({
     data: (props, state) => { //发送给服务器的数据
         var {page, limit, mdrender} = state;
         return {
-            tab: props.location.query.tab || 'all',
+            tab: queryString.parse(props.location.search).tab || 'all',
             page,
             limit,
             mdrender

@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import React, { Component } from 'react';
+// import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import {NavLink as Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import { Tool, merged } from '../Tool';
@@ -79,7 +80,6 @@ class Content extends Component {
         );
     }
 }
-
 export default GetData({
     id: 'MyMessages',  //应用关联使用的redux
     component: Main, //接收数据的组件入口

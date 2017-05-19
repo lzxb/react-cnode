@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import React, { Component } from 'react';
+import {NavLink as Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import { Tool, merged } from '../Tool';
@@ -14,6 +14,7 @@ import { DataLoad, DataNull, Header, TipMsgSignin, Footer, UserHeadImg, GetData 
 class Main extends Component {
     constructor(props) {
         super(props);
+        debugger;
         this.state = this.props.state;
         this.tab = (tabIndex) => {
             this.state.tabIndex = tabIndex;
@@ -22,13 +23,14 @@ class Main extends Component {
     }
     render() {
         var {data, loadAnimation, loadMsg, id, tabIndex} = this.props.state;
-        var { User, params} = this.props;
+        let { User, match} = this.props;
+        let params = match.params;
         User = User ? User : {};
         var main = data ? <Home data={data} tabIndex={tabIndex} tab={this.tab} /> : <DataLoad loadAnimation={loadAnimation} loadMsg={loadMsg} />;
-        var title = params.loginname == User.loginname ? '个人中心' : params.loginname + '的个人中心';
-        var footer = params.loginname == User.loginname ? <Footer index="3" /> : null;
-        var leftIcon = params.loginname == User.loginname ? null : 'fanhui';
-        var rightIcon = params.loginname == User.loginname ? 'tuichu' : null;
+        var title = params.loginname === User.loginname ? '个人中心' : params.loginname + '的个人中心';
+        var footer = params.loginname === User.loginname ? <Footer index="3" /> : null;
+        var leftIcon = params.loginname === User.loginname ? null : 'fanhui';
+        var rightIcon = params.loginname === User.loginname ? 'tuichu' : null;
         return (
             <div>
                 <Header title={title} leftIcon={leftIcon} rightIcon={rightIcon} rightTo="/signout" />
@@ -104,7 +106,7 @@ export default GetData({
     id: 'UserView',  //应用关联使用的redux
     component: Main, //接收数据的组件入口
     url: (props, state) => {
-        return '/api/v1/user/' + props.params.loginname;
+        return '/api/v1/user/' + props.match.params.loginname;
     },
     data: {},
     success: (state) => { return state; }, //请求成功后执行的方法

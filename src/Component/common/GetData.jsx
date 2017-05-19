@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import React, { Component } from 'react';
+import {NavLink as Link } from 'react-router-dom';
+import queryString from 'query-string';
 import { connect } from 'react-redux';
 import action from '../../Action/Index';
 import { Tool, merged } from '../../Tool';
@@ -127,7 +128,7 @@ const Main = (mySeting) => {
                 } else if (data && typeof data === 'string') {
                     return data;
                 } else {
-                    return this.props.location.query;
+                    return queryString.parse(this.props.location.search);
                 }
             }
 
