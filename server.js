@@ -2,17 +2,16 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 
-// 相当于通过本地node服务代理请求到了http://cnodejs.org/api
-var proxy = [{
-    path: '/api/*',
-    target: 'https://cnodejs.org',
-    host: 'cnodejs.org'
-}];
-
 //启动服务
 var server = new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
-    proxy: proxy,
+	// 相当于通过本地node服务代理请求到了http://cnodejs.org/api
+    proxy: {
+	    "/api/*": {
+		    target: "https://cnodejs.org",
+		    secure: false
+	    }
+    },
     stats: {
         colors: true
     },
@@ -23,4 +22,4 @@ server.app.get('*', function (req, res) {
     res.sendFile(__dirname + '/index.html')
 });
 
-server.listen(3000);
+server.listen(3002);

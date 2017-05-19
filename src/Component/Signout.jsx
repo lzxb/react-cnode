@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import {NavLink as Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import { Tool, merged } from '../Tool';
@@ -16,7 +17,7 @@ class Main extends Component {
         super(props);
         this.signout = () => {
             this.props.signin();
-            this.context.router.replace({ pathname: '/' });
+            this.context.router.history.replace({ pathname: '/' });
         }
 
     }
@@ -34,7 +35,7 @@ class Main extends Component {
     }
 }
 Main.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 
 

@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import React, { Component } from 'react';
+import {NavLink as Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import queryString from 'query-string';
 import action from '../../Action/Index';
 import { Tool, merged, config } from '../../Tool';
 import { DataLoad, DataNull, Header, TipMsgSignin, Footer, UserHeadImg } from './index';
@@ -164,7 +165,7 @@ const Main = (mySetting) => {
                 } else if (data && typeof data === 'string') {
                     return data;
                 } else {
-                    return this.props.location.query;
+                    return queryString.parse(this.props.location.search).tab;
                 }
             }
 

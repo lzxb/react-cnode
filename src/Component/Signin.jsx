@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import React, { Component} from 'react';
+import PropTypes from 'prop-types';
+import {NavLink as Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import { Tool, merged } from '../Tool';
@@ -26,7 +27,7 @@ class Main extends Component {
                     alert('登录成功');
                     res.accesstoken = accesstoken;
                     this.props.signinSuccess(res);
-                    this.context.router.push({
+                    this.context.router.history.push({
                         pathname: '/user/' + res.loginname
                     });
                 } else {
@@ -56,7 +57,7 @@ class Main extends Component {
     }
 }
 Main.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 
 

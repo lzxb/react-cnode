@@ -1,5 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+// import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import {NavLink as Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import action from '../Action/Index';
 import { Tool, merged } from '../Tool';
@@ -26,7 +28,7 @@ class Main extends Component {
             var accesstoken = this.props.User ? this.props.User.accesstoken : '';
             var uid = this.props.User ? this.props.User.id : '';
             if (!accesstoken) {
-                return this.context.router.push({ pathname: '/signin' }); //跳转到登录
+                return this.context.router.history.push({ pathname: '/signin' }); //跳转到登录
             } else if (this.props.User.loginname === loginname) {
                 return alert('你不能给自己点赞');
             }
@@ -54,7 +56,7 @@ class Main extends Component {
         this.showReplyBox = (index) => {
             var accesstoken = this.props.User ? this.props.User.accesstoken : '';
             if (!accesstoken) {
-                return this.context.router.push({ pathname: '/signin' }); //跳转到登录
+                return this.context.router.history.push({ pathname: '/signin' }); //跳转到登录
             }
             --index;
             if (this.props.state.data.replies[index].display === 'block') {
@@ -89,7 +91,7 @@ class Main extends Component {
     }
 }
 Main.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 /**
  * 文章主体部分
@@ -272,13 +274,13 @@ ReplyBox.defaultProps = {
     placeholder: '回复支持Markdown语法,请注意标记代码'
 };
 ReplyBox.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 export default GetData({
     id: 'Topic',  //应用关联使用的redux
     component: Main, //接收数据的组件入口
     url: (props, state) => {
-        return '/api/v1/topic/' + (props.params.id || '');
+        return '/api/v1/topic/' + (props.match.params.id || '');
     },
     data: (props, state) => { //发送给服务器的数据
         var accesstoken = props.User ? props.User.accesstoken : '';

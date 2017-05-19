@@ -1,5 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+// import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import {NavLink as Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import action from '../../Action/Index';
 import { Tool, merged } from '../../Tool';
@@ -39,7 +41,7 @@ export class Header extends Component {
     render() {
         let {title, leftTo, leftIcon, rightTo, rightIcon, rightClick } = this.props;
         let left = null;
-
+        debugger;
         if (leftTo && leftIcon) {
             left = (
                 <Link to={leftTo}>
@@ -48,7 +50,7 @@ export class Header extends Component {
             );
         } else if (leftIcon === 'fanhui') { //返回上一页
             left = (
-                <a onClick={this.context.router.goBack}>
+                <a onClick={this.context.router.history.goBack}>
                     <i className={'iconfont icon-' + leftIcon}></i>
                 </a>
             );
@@ -82,7 +84,7 @@ export class Header extends Component {
     }
 }
 Header.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 
 
