@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 
 class Bundle extends Component {
-	constructor (props){
-		super(props);
+	constructor (...args){
+		super(...args);
 		this.state = {
 			abc:"abc",
 			mod: null
 		};
 	}
 	componentWillMount() {
-		debugger;
 		this.load(this.props)
 	}
 

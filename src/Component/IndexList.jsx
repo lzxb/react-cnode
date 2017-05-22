@@ -112,9 +112,7 @@ class Main extends Component {
     }
     render() {
         var {data, loadAnimation, loadMsg} = this.props.state;
-        debugger;
         var tab = queryString.parse(this.props.location.search).tab || 'all';
-        debugger;
         return (
             <div className="index-list-box">
                 <Nav tab={tab} />
