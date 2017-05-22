@@ -34,11 +34,11 @@ const routes = [
 		exact: false,
 		component: (props) => getComponent(props, () => import('../Component/UserView'))
 	},
-	{ path: '/my/signin',
+	{ path: '/signin',
 		exact: false,
 		component: (props) => getComponent(props, () => import('../Component/Signin'))
 	},
-	{ path: '/my/signout',
+	{ path: '/signout',
 		exact: false,
 		component: (props) => getComponent(props, () => import('../Component/Signout'))
 	}
