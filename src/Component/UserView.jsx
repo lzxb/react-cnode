@@ -14,7 +14,6 @@ import { DataLoad, DataNull, Header, TipMsgSignin, Footer, UserHeadImg, GetData 
 class Main extends Component {
     constructor(props) {
         super(props);
-        debugger;
         this.state = this.props.state;
         this.tab = (tabIndex) => {
             this.state.tabIndex = tabIndex;

@@ -41,7 +41,6 @@ export class Header extends Component {
     render() {
         let {title, leftTo, leftIcon, rightTo, rightIcon, rightClick } = this.props;
         let left = null;
-        debugger;
         if (leftTo && leftIcon) {
             left = (
                 <Link to={leftTo}>
