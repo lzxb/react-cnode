@@ -22,4 +22,4 @@ server.app.get('*', function (req, res) {
     res.sendFile(__dirname + '/index.html')
 });
 
-server.listen(3002);
+server.listen(3000);
