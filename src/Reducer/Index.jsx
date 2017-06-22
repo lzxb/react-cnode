@@ -22,7 +22,7 @@ const User = (state = JSON.parse(Tool.localItem('User')), action) => {
 }
 
 
-const DB = (_ID = '', seting = {}) => {
+const DB = (_ID = '', setting = {}) => {
     const cb = {
         setDefaut: () => {
             var defaults = merged({
@@ -33,7 +33,7 @@ const DB = (_ID = '', seting = {}) => {
                 scrollX: 0, //滚动条X
                 scrollY: 0, //滚动条Y 
                 mdrender: true //当为 false 时，不渲染。默认为 true，渲染出现的所有 markdown 格式文本。
-            }, seting);
+            }, setting);
             return {
                 defaults,
                 path: {}

@@ -73,7 +73,7 @@ const Main = (mySetting) => {
             /**
              * DOM初始化完成后执行回调
              */
-            this.redayDOM = () => {
+            this.readyDOM = () => {
                 var {success, error} = this.props.setting;
                 var {scrollX, scrollY} = this.state;
                 if (this.get) return false; //已经加载过
@@ -186,7 +186,7 @@ const Main = (mySetting) => {
          * 你可以通过 this.getDOMNode() 来获取相应 DOM 节点。
          */
         componentDidMount() {
-            this.redayDOM();
+            this.readyDOM();
         }
         /**
          * 在组件接收到新的 props 的时候调用。在初始化渲染的时候，该方法不会调用
@@ -207,7 +207,7 @@ const Main = (mySetting) => {
          * 使用该方法可以在组件更新之后操作 DOM 元素。
          */
         componentDidUpdate() {
-            this.redayDOM();
+            this.readyDOM();
         }
         /**
          * 在组件从 DOM 中移除的时候立刻被调用。
