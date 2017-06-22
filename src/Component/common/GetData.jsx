@@ -176,7 +176,7 @@ const Main = (mySetting) => {
          * 使用该方法可以在组件更新之后操作 DOM 元素。
          */
         componentDidUpdate() {
-            this.redayDOM();
+            this.readyDOM();
         }
         /**
          * 在组件从 DOM 中移除的时候立刻被调用。
